@@ -1,0 +1,96 @@
+{
+  "name": "practice-node",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/app.js",
+  "private": true,
+  "files": [],
+  "engines": {
+    "node": ">=21.2.0"
+  },
+  "scripts": {
+    "start": "node .",
+    "watch": "node --watch .",
+    "lint:css": "stylelint .",
+    "lint": "eslint",
+    "prepare": "husky",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "packageManager": "pnpm@10.11.0",
+  "dependencies": {
+    "dotenv": "16.5.0",
+    "ejs": "3.1.10",
+    "express": "5.1.0",
+    "express-async-handler": "1.2.0",
+    "express-validator": "7.2.1",
+    "pg": "8.16.0"
+  },
+  "devDependencies": {
+    "@awmottaz/prettier-plugin-void-html": "1.8.0",
+    "@pixie-cheeks/eslint-config": "13.0.0",
+    "@pixie-cheeks/stylelint-config": "4.0.0",
+    "@types/express": "5.0.2",
+    "@types/node": "22.15.21",
+    "@types/pg": "8.15.2",
+    "cspell": "9.0.2",
+    "eslint": "9.27.0",
+    "husky": "9.1.7",
+    "lint-staged": "16.0.0",
+    "prettier": "3.5.3",
+    "stylelint": "16.19.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "plugins": [
+      "@awmottaz/prettier-plugin-void-html"
+    ]
+  },
+  "stylelint": {
+    "extends": [
+      "@pixie-cheeks/stylelint-config",
+      "@pixie-cheeks/stylelint-config/bem"
+    ],
+    "ignoreFiles": [
+      "**/*",
+      "!src/**/*.css"
+    ]
+  },
+  "cspell": {
+    "version": "0.2",
+    "language": "en,en-GB,lorem",
+    "allowCompoundWords": true,
+    "enableGlobDot": true,
+    "dictionaries": [
+      "html"
+    ],
+    "words": [
+      "awmottaz",
+      "besthyhy",
+      "esbuild",
+      "ilike",
+      "pgdatabase",
+      "pghost",
+      "pguser",
+      "unrs"
+    ],
+    "ignorePaths": [
+      ".git",
+      ".husky/_",
+      "dist",
+      "node_modules",
+      "pnpm-lock.yaml"
+    ]
+  },
+  "lint-staged": {
+    "*": [
+      "cspell --no-must-find-files",
+      "prettier --write --ignore-unknown"
+    ],
+    "*.js": [
+      "eslint --max-warnings 0"
+    ],
+    "*.css": [
+      "stylelint"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+/* stylelint-disable-next-line selector-max-universal */
+* {
+  margin: 0;
+}
+
+.body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow-y: scroll;
+}
+
+.page__container {
+  margin: 0 auto;
+  padding: 1em 0;
+  width: 80%;
+  max-width: 1400px;
+}
+
+.nav__list {
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav__link {
+  text-decoration: underline;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+.link:active {
+  opacity: 0.6;
+}
+
+.main__heading {
+  padding-bottom: 0.5em;
+}
+
+.link-btn {
+  display: inline-block;
+  margin-bottom: 0.5em;
+  background-color: black;
+  padding: 0.5em;
+  color: white;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: start;
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: start;
+}
+
+.form__field--col {
+  flex-direction: row;
+}
+
+.main__link-delete {
+  background-color: rgb(228 14 14);
+  color: white;
+}

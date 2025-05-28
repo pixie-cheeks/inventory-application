@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.ejs": "html"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "besthyhy.ejs-eta-beautify"
+  }
+}
