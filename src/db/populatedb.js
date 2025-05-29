@@ -1,22 +1,41 @@
 #!/usr/bin/env node
+import { configDotenv } from 'dotenv';
+import fs from 'node:fs';
 import { Client } from 'pg';
-import 'dotenv/config';
+import path from 'node:path';
 
-const SQL = `
-CREATE TABLE IF NOT EXISTS usernames (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  username VARCHAR ( 255 )
+const { dirname } = import.meta;
+const parameter = process.argv.at(2);
+const isProduction = parameter === '-p' || parameter === '--production';
+const seedSqlPath = path.resolve(dirname, './seed.sql');
+const configPath = path.resolve(
+  dirname,
+  `../../.env${isProduction ? '.production' : ''}`,
 );
 
-INSERT INTO usernames (username) 
-VALUES
-  ('Bryan'),
-  ('Odin'),
-  ('Damon');
-`;
+if (!fs.existsSync(configPath))
+  throw new Error(`Environment config file (${configPath}) doesn't exist.`);
+
+if (!fs.existsSync(seedSqlPath))
+  throw new Error(`Seed file (${seedSqlPath}) doesn't exist.`);
+
+const SQL = fs.readFileSync(seedSqlPath).toString();
+const getConfig = () =>
+  isProduction
+    ? {
+        ssl: {
+          rejectUnauthorized: true,
+          ca: process.env.DB_SSL_CA,
+        },
+      }
+    : {};
+
+configDotenv({
+  path: configPath,
+});
 
 console.log('seeding...');
-const client = new Client();
+const client = new Client(getConfig());
 await client.connect();
 await client.query(SQL);
 await client.end();
