@@ -1,4 +1,7 @@
 {
+  "shellcheck.ignorePatterns": {
+    ".env.example": true
+  },
   "files.associations": {
     "*.ejs": "html"
   },
