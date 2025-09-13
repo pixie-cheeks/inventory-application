@@ -2,7 +2,7 @@ import pixie from '@pixie-cheeks/eslint-config';
 import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
-  { files: ['**/*.ts,js,cjs'] },
+  { files: ['**/*.ts,js'] },
   { ignores: ['dist'] },
   ...pixie.base,
   {
@@ -17,12 +17,6 @@ export default defineConfig([
       'no-console': 'off',
       'unicorn/filename-case': ['error', { cases: { camelCase: true } }],
       'n/no-unsupported-features/node-builtins': 'off',
-      'n/hashbang': [
-        'warn',
-        {
-          ignoreUnpublished: true,
-        },
-      ],
     },
   },
   pixie.prettier,
