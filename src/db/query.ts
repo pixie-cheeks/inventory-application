@@ -1,8 +1,8 @@
-import { pool } from './pool.js';
+import { pool } from './pool.ts';
 
-type Username = {
+interface Username {
   username: string;
-};
+}
 
 const getAllUsernames = async () => {
   const { rows } = await pool.query<Username>('SELECT * FROM usernames');
