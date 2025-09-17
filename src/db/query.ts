@@ -1,13 +1,16 @@
 import { pool } from './pool.js';
 
+type Username = {
+  username: string;
+};
+
 const getAllUsernames = async () => {
-  const { rows } = await pool.query('SELECT * FROM usernames');
+  const { rows } = await pool.query<Username>('SELECT * FROM usernames');
   return rows;
 };
 
-/** @param {string} searchString */
-const getSearchedUsernames = async (searchString) => {
-  const { rows } = await pool.query(
+const getSearchedUsernames = async (searchString: string) => {
+  const { rows } = await pool.query<Username>(
     String.raw`select * from usernames where username ilike $1;`,
     [`%${searchString}%`],
   );
@@ -15,8 +18,7 @@ const getSearchedUsernames = async (searchString) => {
   return rows;
 };
 
-/** @param {string} username */
-const insertUsername = async (username) => {
+const insertUsername = async (username: string) => {
   await pool.query('INSERT INTO usernames (username) VALUES ($1)', [username]);
 };
 

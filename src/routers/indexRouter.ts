@@ -2,8 +2,8 @@ import { Router } from 'express';
 import {
   getUserNames,
   deleteAllUsers,
-} from '../controllers/indexController.js';
-import { CustomNotFoundError } from '../errors.js';
+} from '../controllers/indexController.ts';
+import { CustomNotFoundError } from '../errors.ts';
 
 const indexRouter = Router();
 

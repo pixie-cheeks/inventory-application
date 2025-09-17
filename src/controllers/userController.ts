@@ -1,4 +1,4 @@
-import { insertUsername } from '../db/query.js';
+import { insertUsername } from '../db/query.ts';
 /**
  * @param {import('express').Request} _req
  * @param {import('express').Response} res */
