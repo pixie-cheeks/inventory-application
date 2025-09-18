@@ -4,7 +4,7 @@ import { userRouter } from './routers/userRouter.ts';
 import { indexRouter } from './routers/indexRouter.ts';
 import { errorHandler } from './errors.ts';
 
-const PORT = process.env.PORT ?? '3000';
+const PORT = process.env.PORT ?? 3_000;
 const { dirname } = import.meta;
 const app = express();
 
@@ -18,6 +18,6 @@ app.use('/', indexRouter);
 
 app.use(errorHandler);
 
-app.listen(Number(PORT), () => {
+app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
 });
