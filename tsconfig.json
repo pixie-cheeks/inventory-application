@@ -12,7 +12,7 @@
 
     /* Bundler mode */
     "moduleResolution": "nodenext",
-    "allowImportingTsExtensions": true,
+    // "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
 

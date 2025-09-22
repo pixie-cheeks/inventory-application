@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { insertUsername } from '../db/query.ts';
+import { insertUsername } from '../db/query.js';
 
 const userGet = (_req, res: Response) => {
   res.render('createUser');

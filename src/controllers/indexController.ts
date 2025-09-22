@@ -3,7 +3,7 @@ import {
   getAllUsernames,
   getSearchedUsernames,
   deleteAllUsersDB,
-} from '../db/query.ts';
+} from '../db/query.js';
 
 const getUserNames = expressAsyncHandler(async (req, res) => {
   const querySearch = req.query.search;

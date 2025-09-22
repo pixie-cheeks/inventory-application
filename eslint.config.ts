@@ -1,13 +1,16 @@
 import pixie from '@pixie-cheeks/eslint-config';
 import { defineConfig } from 'eslint/config';
-import tseslint from 'typescript-eslint';
+import { configs as tseslintConfigs } from 'typescript-eslint';
+import type { ConfigWithExtends } from 'typescript-eslint';
+import { importX as pluginImportX } from 'eslint-plugin-import-x';
 
 export default defineConfig([
-  { files: ['**/*.ts,js'] },
+  { files: ['**/*.{ts,js}'] },
   { ignores: ['dist'] },
-  ...pixie.base,
-  tseslint.configs.strictTypeChecked,
-  tseslint.configs.stylisticTypeChecked,
+  // ...pixie.base,
+  tseslintConfigs.strictTypeChecked,
+  tseslintConfigs.stylisticTypeChecked,
+  pluginImportX.flatConfigs.typescript as ConfigWithExtends[],
   {
     languageOptions: {
       parserOptions: {
@@ -44,7 +47,7 @@ export default defineConfig([
     files: ['src/**/*'],
     rules: {
       'no-console': 'off',
-      'unicorn/filename-case': ['error', { cases: { camelCase: true } }],
+      // 'unicorn/filename-case': ['error', { cases: { camelCase: true } }],
     },
   },
   pixie.prettier,

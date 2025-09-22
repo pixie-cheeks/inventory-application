@@ -1,8 +1,8 @@
 import express from 'express';
 import path from 'node:path';
-import { userRouter } from './routers/userRouter.ts';
-import { indexRouter } from './routers/indexRouter.ts';
-import { errorHandler } from './errors.ts';
+import { userRouter } from './routers/userRouter.js';
+import { indexRouter } from './routers/indexRouter.js';
+import { errorHandler } from './errors.js';
 
 const PORT = process.env.PORT ?? 3_000;
 const { dirname } = import.meta;
