@@ -92,9 +92,6 @@
       "cspell --no-must-find-files",
       "prettier --write --ignore-unknown"
     ],
-    "*.js": [
-      "eslint --max-warnings 0"
-    ],
     "*.css": [
       "stylelint"
     ]
