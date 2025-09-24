@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@awmottaz/prettier-plugin-void-html": "1.9.0",
-    "@pixie-cheeks/eslint-config": "link:..\\eslint-config",
+    "@pixie-cheeks/eslint-config": "17.0.0",
     "@pixie-cheeks/stylelint-config": "5.0.0",
     "@types/express": "5.0.3",
     "@types/node": "24.5.2",
