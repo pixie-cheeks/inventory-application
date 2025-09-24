@@ -6,7 +6,7 @@
   "private": true,
   "files": [],
   "engines": {
-    "node": ">=21.2.0"
+    "node": ">=22.16.0"
   },
   "scripts": {
     "start": "node .",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@awmottaz/prettier-plugin-void-html": "1.9.0",
-    "@pixie-cheeks/eslint-config": "16.0.0",
+    "@pixie-cheeks/eslint-config": "link:..\\eslint-config",
     "@pixie-cheeks/stylelint-config": "5.0.0",
     "@types/express": "5.0.3",
     "@types/node": "24.5.2",
@@ -43,7 +43,7 @@
     "prettier": "3.6.2",
     "stylelint": "16.24.0",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.44.0"
+    "typescript-eslint": "^8.44.1"
   },
   "prettier": {
     "singleQuote": true,
