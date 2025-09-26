@@ -93,6 +93,9 @@
       "cspell --no-must-find-files",
       "prettier --write --ignore-unknown"
     ],
+    "*.sql": [
+      "sqlfluff fix --dialect postgres"
+    ],
     "*.css": [
       "stylelint"
     ]
