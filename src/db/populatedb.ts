@@ -13,12 +13,6 @@ const configPath = path.resolve(
   `../../.env${isProduction ? '.production' : ''}`,
 );
 
-if (!fs.existsSync(configPath))
-  throw new Error(`Environment config file (${configPath}) doesn't exist.`);
-
-if (!fs.existsSync(seedSqlPath))
-  throw new Error(`Seed file (${seedSqlPath}) doesn't exist.`);
-
 const SQL = fs.readFileSync(seedSqlPath).toString();
 const getConfig = () =>
   isProduction

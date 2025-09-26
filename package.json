@@ -9,6 +9,7 @@
     "node": ">=22.16.0"
   },
   "scripts": {
+    "build": "tsc",
     "start": "node .",
     "watch": "node --watch .",
     "lint:css": "stylelint .",

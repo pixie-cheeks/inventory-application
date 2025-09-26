@@ -1,10 +1,4 @@
-CREATE TABLE IF NOT EXISTS usernames (
+CREATE TABLE IF NOT EXISTS pokemon (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    username VARCHAR(255)
+    name VARCHAR(255)
 );
-
-INSERT INTO usernames (username)
-VALUES
-('Bryan'),
-('Odin'),
-('Damon');
