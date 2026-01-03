@@ -1,22 +1,22 @@
 CREATE TABLE IF NOT EXISTS types (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(255) UNIQUE
+    type_name VARCHAR(255) UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS pokemons (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(255) UNIQUE,
-    type_one VARCHAR(255) REFERENCES types (name),
-    type_two VARCHAR(255) REFERENCES types (name)
+    pokemon_name VARCHAR(255) UNIQUE,
+    type_one VARCHAR(255) REFERENCES types (type_name),
+    type_two VARCHAR(255) REFERENCES types (type_name)
 );
 
 CREATE TABLE IF NOT EXISTS trainers (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(255) UNIQUE
+    trainer_name VARCHAR(255) UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS owned_pokemons (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    pokemon VARCHAR(255) REFERENCES pokemons (name),
-    trainer VARCHAR(255) REFERENCES trainers (name)
+    pokemon VARCHAR(255) REFERENCES pokemons (pokemon_name),
+    trainer VARCHAR(255) REFERENCES trainers (trainer_name)
 );
