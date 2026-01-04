@@ -26,6 +26,7 @@ export default defineConfig([
     rules: {
       'no-console': 'off',
       'unicorn/filename-case': ['error', { cases: { camelCase: true } }],
+      camelcase: 'off',
     },
   },
   pixie.prettier,
