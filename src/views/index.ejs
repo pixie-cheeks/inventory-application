@@ -2,30 +2,17 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User List</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="body">
   <%- include('header') %>
   <main>
     <div class="main__container page__container">
-      <a class="main__link link link-btn" href="/new">Create New User</a>
-      <a class="main__link link link-btn main__link-delete" href="/delete">Delete All Users</a>
-      <form method="get" action="/" class="form">
-        <div class="form__field form__field--col">
-          <input aria-label="Search" type="text" name="search" id="search">
-          <button type="submit">Search</button>
-        </div>
-      </form>
-      <h2 class="main__heading">Users</h2>
-      <% if (usernames && usernames.length > 0) { %>
-      <%- include('usersList', {usernames}) %>
-      <% } else { %>
-      <p>No users found.</p>
-      <% } %>
+      <h1>Hello World</h1>
     </div>
   </main>
 </body>
