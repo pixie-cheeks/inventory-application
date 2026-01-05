@@ -29,5 +29,11 @@ export default defineConfig([
       camelcase: 'off',
     },
   },
+  {
+    files: ['src/tools/**/*'],
+    rules: {
+      'import-x/no-extraneous-dependencies': 'off',
+    },
+  },
   pixie.prettier,
 ]);
