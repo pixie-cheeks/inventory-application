@@ -13,7 +13,7 @@
     "preview": "node dist/app.js",
     "start": "tsx src/app.ts",
     "watch": "tsx --watch .",
-    "populateDB": "tsx src/db/populateDB.ts",
+    "populateDB": "tsx src/db/populateDb.ts",
     "lint:css": "stylelint .",
     "lint": "eslint",
     "prepare": "husky",
