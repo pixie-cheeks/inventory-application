@@ -1,4 +1,4 @@
-interface TableSchema {
+export interface TableSchema {
   columns: string[];
   values: (string | number)[][];
 }
@@ -10,7 +10,7 @@ const tableSeeds: TableSeeds = {
     values: [['electric'], ['fire'], ['water'], ['grass']],
   },
   pokemons: {
-    columns: ['pokemon_name', 'type_one', 'type_two'],
+    columns: ['pokemon_name', 'type_one'],
     values: [['pikachu', 'electric']],
   },
   trainers: {

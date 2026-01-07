@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User List</title>
+  <title>Pokemon Inventory App</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -12,7 +12,18 @@
   <%- include('header') %>
   <main>
     <div class="main__container page__container">
+      <%
+       switch (locals.componentName) {
+        case 'types':
+      %>
+      <%- include('types') %>
+      <% break;
+      default:
+    %>
+
       <h1>Hello World</h1>
+
+      <% } %>
     </div>
   </main>
 </body>

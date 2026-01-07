@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS pokemons (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     pokemon_name VARCHAR(255) UNIQUE,
     type_one VARCHAR(255) REFERENCES types (type_name),
-    type_two VARCHAR(255) REFERENCES types (type_name)
+    type_two VARCHAR(255) REFERENCES types (type_name) NULL
 );
 
 CREATE TABLE IF NOT EXISTS trainers (

@@ -26,5 +26,7 @@ app.use('/', indexRouter);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`Express app listening on port ${PORT}!`);
+  console.log(
+    `Express app listening on port ${PORT}! http://localhost:${PORT}`,
+  );
 });

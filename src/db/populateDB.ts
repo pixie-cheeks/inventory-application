@@ -3,7 +3,7 @@ import { configDotenv } from 'dotenv';
 import fs from 'node:fs';
 import { Client } from 'pg';
 import path from 'node:path';
-import { tableSeeds } from './tableSeeds.js';
+import { tableSeeds, type TableSchema } from './tableSeeds.js';
 
 const { dirname } = import.meta;
 const parameter = process.argv.at(2);
@@ -32,26 +32,23 @@ configDotenv({
 const client = new Client(getConfig());
 await client.connect();
 await client.query(schemaSQL);
-const insertValuesFormat = (listOfStrings: string[]) =>
-  listOfStrings
-    .map((theString, index) => {
-      if (index % 2 === 0) {
-        if (index === listOfStrings.length - 1) return `${theString})`;
-        return `${theString}), `;
-      }
-
-      return `(${theString}`;
-    })
-    .join('');
+const formatInsertValues = (valueGroups: TableSchema['values']) =>
+  valueGroups
+    .map((eachGroup) =>
+      eachGroup.map((eachValue) => `'${eachValue}'`).join(', '),
+    )
+    .map((eachGroupString) => `(${eachGroupString})`)
+    .join(', ');
 
 console.log('seeding...');
 await Promise.all(
   Object.entries(tableSeeds).map(([tableName, tableData]) => {
     if (!tableData) return Promise.resolve();
-    return client.query(
-      `INSERT INTO ${tableName} (${tableData.columns.join(', ')})
-       VALUES ${insertValuesFormat(tableData.values.map((valueGroup) => valueGroup.join(', ')))};`,
-    );
+
+    const sqlQueryString = `INSERT INTO ${tableName} (${tableData.columns.join(', ')})
+       VALUES ${formatInsertValues(tableData.values)} ON CONFLICT DO NOTHING;`;
+
+    return client.query(sqlQueryString);
   }),
 );
 await client.end();
