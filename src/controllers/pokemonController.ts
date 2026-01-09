@@ -3,8 +3,9 @@ import { getAllPokemonDB } from '../db/query.js';
 
 const getAllPokemon = expressAsyncHandler(async (_req, res) => {
   const allPokemon = await getAllPokemonDB();
-  res.render('pokemon', {
+  res.render('main', {
     allPokemon,
+    componentName: 'pokemon',
   });
 });
 

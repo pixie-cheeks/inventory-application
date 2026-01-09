@@ -12,17 +12,10 @@
   <%- include('header') %>
   <main>
     <div class="main__container page__container">
-      <%
-       switch (locals.componentName) {
-        case 'types':
-      %>
-      <%- include('types') %>
-      <% break;
-      default:
-    %>
-
+      <% if (locals.componentName) { %>
+      <%- include(componentName) %>
+      <% } else { %>
       <h1>Hello World</h1>
-
       <% } %>
     </div>
   </main>

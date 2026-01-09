@@ -1,0 +1,15 @@
+<ol>
+  <% for (const {pokemon_name, type_one, type_two} of allPokemon) { %>
+  <li>
+    <h2><%- pokemon_name %></h2>
+    <dl>
+      <dt>Type One</dt>
+      <dd><%- type_one %></dd>
+      <% if (locals.type_two) { %>
+      <dt>Type Two</dt>
+      <dd><%- type_two %></dd>
+      <% } %>
+    </dl>
+  </li>
+  <% } %>
+</ol>

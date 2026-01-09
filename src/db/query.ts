@@ -35,7 +35,7 @@ const deleteAllTypes = async () => {
 };
 
 const getAllPokemonDB = async () => {
-  const { rows } = await pool.query<Pokemon>('SELECT * FROM pokemon;');
+  const { rows } = await pool.query<Pokemon>('SELECT * FROM pokemons;');
   return rows;
 };
 
@@ -45,17 +45,17 @@ const addPokemon = async ({
   type_two,
 }: Omit<Pokemon, 'id'>) => {
   await pool.query(
-    `INSERT INTO pokemon (pokemon_name, type_one, type_two) VALUES ($1, $2, $3);`,
+    `INSERT INTO pokemons (pokemon_name, type_one, type_two) VALUES ($1, $2, $3);`,
     [pokemon_name, type_one, type_two],
   );
 };
 
 const deletePokemon = async (id: number) => {
-  await pool.query('DELETE FROM pokemon WHERE id = $1;', [id]);
+  await pool.query('DELETE FROM pokemons WHERE id = $1;', [id]);
 };
 
 const deleteAllPokemon = async () => {
-  await pool.query('DELETE FROM pokemon;');
+  await pool.query('DELETE FROM pokemons;');
 };
 
 const getAllTrainersDB = async () => {
