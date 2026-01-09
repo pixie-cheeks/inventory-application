@@ -4,7 +4,7 @@ import { CustomNotFoundError } from '../errors.js';
 
 const indexRouter = Router();
 
-indexRouter.get(/\/(\?.+)?/, getIndexPage);
+indexRouter.get('/', getIndexPage);
 indexRouter.get('/*all', (_req, _res, next) => {
   console.log(_req.params, _req.query, _req.body);
   next(new CustomNotFoundError('Page not found'));
