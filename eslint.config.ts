@@ -24,6 +24,7 @@ export default defineConfig([
   {
     files: ['src/**/*'],
     rules: {
+      '@typescript-eslint/explicit-function-return-type': 'error',
       'no-console': 'off',
       'unicorn/filename-case': ['error', { cases: { camelCase: true } }],
       camelcase: 'off',

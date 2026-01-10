@@ -17,79 +17,158 @@ interface Trainer {
   trainer_name: string;
 }
 
-const getAllTypesDB = async () => {
+const generateSetClause = (fieldsToUpdate: object): string => {
+  const fields = Object.keys(fieldsToUpdate);
+
+  // Generate the SET clause: "col1 = $1, col2 = $2, ..."
+  return fields.map((field, index) => `${field} = $${index + 1}`).join(', ');
+};
+
+const getAllTypesDB = async (): Promise<PokemonType[]> => {
   const { rows } = await pool.query<PokemonType>('SELECT * FROM types;');
   return rows;
 };
 
-const addType = async ({ type_name }: Omit<PokemonType, 'id'>) => {
+const getType = async (id: number): Promise<PokemonType> => {
+  const {
+    rows: [row],
+  } = await pool.query<PokemonType>('SELECT * FROM types WHERE id = $1;', [id]);
+  return row;
+};
+
+const addType = async ({
+  type_name,
+}: Omit<PokemonType, 'id'>): Promise<void> => {
   await pool.query('INSERT INTO types (type_name) VALUES ($1);', [type_name]);
 };
 
-const deleteType = async (id: string) => {
+const editType = async ({
+  id,
+  new_name,
+}: {
+  id: number;
+  new_name: string;
+}): Promise<void> => {
+  await pool.query('UPDATE types SET type_name = $1 WHERE id = $2;', [
+    new_name,
+    id,
+  ]);
+};
+
+const deleteType = async (id: string): Promise<void> => {
   await pool.query('DELETE FROM types WHERE id = $1;', [id]);
 };
 
-const deleteAllTypes = async () => {
+const deleteAllTypes = async (): Promise<void> => {
   await pool.query('DELETE FROM types;');
 };
 
-const getAllPokemonDB = async () => {
+const getAllPokemonDB = async (): Promise<Pokemon[]> => {
   const { rows } = await pool.query<Pokemon>('SELECT * FROM pokemons;');
   return rows;
+};
+
+const getPokemon = async (id: number): Promise<Pokemon> => {
+  const {
+    rows: [row],
+  } = await pool.query<Pokemon>('SELECT * FROM pokemons WHERE id = $1;', [id]);
+  return row;
 };
 
 const addPokemon = async ({
   pokemon_name,
   type_one,
   type_two,
-}: Omit<Pokemon, 'id'>) => {
+}: Omit<Pokemon, 'id'>): Promise<void> => {
   await pool.query(
     `INSERT INTO pokemons (pokemon_name, type_one, type_two) VALUES ($1, $2, $3);`,
     [pokemon_name, type_one, type_two],
   );
 };
 
-const deletePokemon = async (id: number) => {
+const editPokemon = async (
+  id: number,
+  pokemonData: Partial<Omit<Pokemon, 'id'>>,
+): Promise<void> => {
+  const dataValues = Object.values(pokemonData);
+  if (dataValues.length === 0) return;
+  const setClause = generateSetClause(pokemonData);
+
+  await pool.query(
+    `UPDATE pokemons SET ${setClause} WHERE id = $${dataValues.length};`,
+    [...dataValues, id],
+  );
+};
+
+const deletePokemon = async (id: number): Promise<void> => {
   await pool.query('DELETE FROM pokemons WHERE id = $1;', [id]);
 };
 
-const deleteAllPokemon = async () => {
+const deleteAllPokemon = async (): Promise<void> => {
   await pool.query('DELETE FROM pokemons;');
 };
 
-const getAllTrainersDB = async () => {
+const getAllTrainersDB = async (): Promise<Trainer[]> => {
   const { rows } = await pool.query<Trainer>('SELECT * FROM trainers;');
   return rows;
 };
 
-const addTrainer = async ({ trainer_name }: Omit<Trainer, 'id'>) => {
+const getTrainer = async (id: number): Promise<Trainer> => {
+  const {
+    rows: [row],
+  } = await pool.query<Trainer>('SELECT * FROM trainers WHERE id = $1;', [id]);
+
+  return row;
+};
+
+const addTrainer = async ({
+  trainer_name,
+}: Omit<Trainer, 'id'>): Promise<void> => {
   await pool.query('INSERT INTO trainers (trainer_name) VALUES ($1);', [
     trainer_name,
   ]);
 };
 
-const deleteTrainer = async (id: string) => {
+const editTrainer = async ({
+  id,
+  newTrainerName,
+}: {
+  id: number;
+  newTrainerName: string;
+}): Promise<void> => {
+  await pool.query('UPDATE trainers SET trainer_name = $1 WHERE id = $2;', [
+    newTrainerName,
+    id,
+  ]);
+};
+
+const deleteTrainer = async (id: string): Promise<void> => {
   await pool.query('DELETE FROM Trainers WHERE id = $1;', [id]);
 };
 
-const deleteAllTrainers = async () => {
+const deleteAllTrainers = async (): Promise<void> => {
   await pool.query('DELETE FROM Trainers;');
 };
 
 export {
   getAllTypesDB,
+  getType,
   addType,
+  editType,
   deleteType,
   deleteAllTypes,
   //
   getAllPokemonDB,
+  getPokemon,
   addPokemon,
+  editPokemon,
   deletePokemon,
   deleteAllPokemon,
   //
   getAllTrainersDB,
+  getTrainer,
   addTrainer,
+  editTrainer,
   deleteTrainer,
   deleteAllTrainers,
 };
