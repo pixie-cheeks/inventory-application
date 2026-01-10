@@ -1,7 +1,8 @@
 import 'dotenv/config';
+import type { PoolConfig } from 'pg';
 import { Pool } from 'pg';
 
-const getConfig = () =>
+const getConfig = (): PoolConfig =>
   process.env.DB_ENV === 'prod'
     ? {
         ssl: {

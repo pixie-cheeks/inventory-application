@@ -15,7 +15,7 @@ const errorHandler = (
   _req: Request,
   res: Response,
   _next: NextFunction,
-) => {
+): void => {
   console.error(err);
   if (err instanceof CustomNotFoundError) {
     res.status(err.statusCode).render('error', { error: err });
