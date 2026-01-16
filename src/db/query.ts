@@ -8,6 +8,7 @@ interface PokemonType {
 interface Pokemon {
   id: number;
   pokemon_name: string;
+  pokemon_description: string;
   type_one: string;
   type_two?: string;
 }
@@ -15,6 +16,7 @@ interface Pokemon {
 interface Trainer {
   id: number;
   trainer_name: string;
+  trainer_description: string;
 }
 
 const generateSetClause = (fieldsToUpdate: object): string => {
@@ -77,12 +79,13 @@ const getPokemon = async (id: number): Promise<Pokemon> => {
 
 const addPokemon = async ({
   pokemon_name,
+  pokemon_description,
   type_one,
   type_two,
 }: Omit<Pokemon, 'id'>): Promise<void> => {
   await pool.query(
-    `INSERT INTO pokemons (pokemon_name, type_one, type_two) VALUES ($1, $2, $3);`,
-    [pokemon_name, type_one, type_two],
+    `INSERT INTO pokemons (pokemon_name, pokemon_description, type_one, type_two) VALUES ($1, $2, $3, $4);`,
+    [pokemon_name, pokemon_description, type_one, type_two],
   );
 };
 
@@ -123,10 +126,12 @@ const getTrainer = async (id: number): Promise<Trainer> => {
 
 const addTrainer = async ({
   trainer_name,
+  trainer_description,
 }: Omit<Trainer, 'id'>): Promise<void> => {
-  await pool.query('INSERT INTO trainers (trainer_name) VALUES ($1);', [
-    trainer_name,
-  ]);
+  await pool.query(
+    'INSERT INTO trainers (trainer_name, trainer_description) VALUES ($1, $2);',
+    [trainer_name, trainer_description],
+  );
 };
 
 const editTrainer = async ({
