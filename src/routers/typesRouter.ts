@@ -1,8 +1,12 @@
 import { Router } from 'express';
-import { getTypesPage } from '../controllers/typesController.js';
+import {
+  getParticularTypePage,
+  getTypesPage,
+} from '../controllers/typesController.js';
 
 const typesRouter = Router();
 
+typesRouter.get('/:typeName', getParticularTypePage);
 typesRouter.get('/', getTypesPage);
 
 export { typesRouter };

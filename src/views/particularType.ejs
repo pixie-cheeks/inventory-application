@@ -1,5 +1,6 @@
+<% if (allPokemonOfType.length !== 0) { %>
 <ol>
-  <% for (const {pokemon_name, pokemon_description, type_one, type_two} of allPokemon) { %>
+  <% for (const {pokemon_name, type_one, type_two} of allPokemonOfType) { %>
   <li>
     <h2><%- pokemon_name %></h2>
     <dl>
@@ -10,7 +11,9 @@
       <dd><%- type_two %></dd>
       <% } %>
     </dl>
-    <p><%- pokemon_description %></p>
   </li>
-  <% } %>
 </ol>
+<% } %>
+<% } else { %>
+<p>Oopsie! No pokemon with this type! LOL</p>
+<% } %>
