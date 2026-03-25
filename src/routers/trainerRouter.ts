@@ -1,8 +1,12 @@
 import { Router } from 'express';
-import { getAllTrainers } from '../controllers/trainerController.js';
+import {
+  getAllTrainers,
+  getTrainerPage,
+} from '../controllers/trainerController.js';
 
 const trainersRouter = Router();
 
+trainersRouter.get('/:trainerName', getTrainerPage);
 trainersRouter.get('/', getAllTrainers);
 
 export { trainersRouter };

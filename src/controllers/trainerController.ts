@@ -1,5 +1,8 @@
 import expressAsyncHandler from 'express-async-handler';
-import { getAllTrainersDB } from '../db/query.js';
+import {
+  getAllTrainersDB,
+  // getAllPokemonDB
+} from '../db/query.js';
 
 const getAllTrainers = expressAsyncHandler(async (_req, res) => {
   const allTrainers = await getAllTrainersDB();
@@ -9,4 +12,16 @@ const getAllTrainers = expressAsyncHandler(async (_req, res) => {
   });
 });
 
-export { getAllTrainers };
+const getTrainerPage = expressAsyncHandler(async (_req, res) => {
+  // const givenTypeName = req.params.typeName;
+  /* const [allTrainers, allPokemon] = await Promise.all([
+    getAllTrainersDB(),
+    getAllPokemonDB(),
+  ]); */
+
+  res.render('main', {
+    componentName: 'trainerPage',
+  });
+});
+
+export { getAllTrainers, getTrainerPage };
