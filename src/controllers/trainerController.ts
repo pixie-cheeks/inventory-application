@@ -12,7 +12,7 @@ const getAllTrainers = expressAsyncHandler(async (_req, res) => {
   });
 });
 
-const getTrainerPage = expressAsyncHandler(async (_req, res) => {
+const getTrainerPage = expressAsyncHandler((_req, res) => {
   // const givenTypeName = req.params.typeName;
   /* const [allTrainers, allPokemon] = await Promise.all([
     getAllTrainersDB(),
