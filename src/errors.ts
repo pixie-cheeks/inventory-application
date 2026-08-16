@@ -11,19 +11,19 @@ class CustomNotFoundError extends Error {
 }
 
 const errorHandler = (
-  err: CustomNotFoundError | Error,
-  _req: Request,
-  res: Response,
+  error: CustomNotFoundError | Error,
+  _request: Request,
+  response: Response,
   _next: NextFunction,
 ): void => {
-  console.error(err);
-  if (err instanceof CustomNotFoundError) {
-    res
-      .status(err.statusCode)
-      .render('main', { error: err, componentName: 'error' });
+  console.error(error);
+  if (error instanceof CustomNotFoundError) {
+    response
+      .status(error.statusCode)
+      .render('main', { error, componentName: 'error' });
   } else {
     const serverErrorCode = 500;
-    res.status(serverErrorCode).render('main', {
+    response.status(serverErrorCode).render('main', {
       error: {
         statusCode: serverErrorCode,
         message: 'The server encountered an error.',

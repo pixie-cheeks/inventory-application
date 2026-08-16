@@ -32,10 +32,11 @@ const getAllTypesDB = async (): Promise<PokemonType[]> => {
 };
 
 const getType = async (id: number): Promise<PokemonType | undefined> => {
-  const {
-    rows: [row],
-  } = await pool.query<PokemonType>('SELECT * FROM types WHERE id = $1;', [id]);
-  return row;
+  const { rows } = await pool.query<PokemonType>(
+    'SELECT * FROM types WHERE id = $1;',
+    [id],
+  );
+  return rows.at(0);
 };
 
 const addType = async ({
@@ -71,10 +72,11 @@ const getAllPokemonDB = async (): Promise<Pokemon[]> => {
 };
 
 const getPokemon = async (id: number): Promise<Pokemon | undefined> => {
-  const {
-    rows: [row],
-  } = await pool.query<Pokemon>('SELECT * FROM pokemons WHERE id = $1;', [id]);
-  return row;
+  const { rows } = await pool.query<Pokemon>(
+    'SELECT * FROM pokemons WHERE id = $1;',
+    [id],
+  );
+  return rows.at(0);
 };
 
 const addPokemon = async ({
@@ -95,10 +97,10 @@ const editPokemon = async (
 ): Promise<void> => {
   const dataValues = Object.values(pokemonData);
   if (dataValues.length === 0) return;
-  const setClause = generateSetClause(pokemonData);
+  const generatedSetClause = generateSetClause(pokemonData);
 
   await pool.query(
-    `UPDATE pokemons SET ${setClause} WHERE id = $${dataValues.length};`,
+    `UPDATE pokemons SET ${generatedSetClause} WHERE id = $${dataValues.length};`,
     [...dataValues, id],
   );
 };
@@ -117,11 +119,12 @@ const getAllTrainersDB = async (): Promise<Trainer[]> => {
 };
 
 const getTrainer = async (id: number): Promise<Trainer | undefined> => {
-  const {
-    rows: [row],
-  } = await pool.query<Trainer>('SELECT * FROM trainers WHERE id = $1;', [id]);
+  const { rows } = await pool.query<Trainer>(
+    'SELECT * FROM trainers WHERE id = $1;',
+    [id],
+  );
 
-  return row;
+  return rows.at(0);
 };
 
 const addTrainer = async ({

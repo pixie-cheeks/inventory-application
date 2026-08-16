@@ -36,5 +36,11 @@ export default defineConfig([
       'import-x/no-extraneous-dependencies': 'off',
     },
   },
+  {
+    files: ['src/routers/**/*.{js,ts}'],
+    rules: {
+      'unicorn/no-top-level-side-effects': 'off',
+    },
+  },
   pixie.prettier,
 ]);

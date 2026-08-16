@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 
-const getIndexPage = (_req: Request, res: Response): void => {
-  res.render('main');
+const getIndexPage = (_request: Request, response: Response): void => {
+  response.render('main');
 };
 
 export { getIndexPage };

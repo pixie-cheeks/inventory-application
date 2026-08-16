@@ -3,6 +3,9 @@ allowBuilds:
   unrs-resolver: true
 minimumReleaseAgeExclude:
   - '@pixie-cheeks/stylelint-config@8.0.0'
+  - '@pixie-cheeks/eslint-config@19.0.0'
 onlyBuiltDependencies:
   - esbuild
   - unrs-resolver
+overrides:
+  '@pixie-cheeks/eslint-config': link:../eslint-config

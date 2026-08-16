@@ -6,16 +6,16 @@ import {
   // getAllPokemonDB
 } from '../db/query.js';
 
-const getAllTrainers = expressAsyncHandler(async (_req, res) => {
+const getAllTrainers = expressAsyncHandler(async (_request, response) => {
   const allTrainers = await getAllTrainersDB();
-  res.render('main', {
+  response.render('main', {
     allTrainers,
     componentName: 'trainers',
   });
 });
 
-const getTrainerPage = expressAsyncHandler(async (req, res, next) => {
-  const givenTrainerId = Number(req.params.trainerId);
+const getTrainerPage = expressAsyncHandler(async (request, response, next) => {
+  const givenTrainerId = Number(request.params.trainerId);
 
   if (Number.isNaN(givenTrainerId)) {
     next(new CustomNotFoundError('Invalid ID for trainer.'));
@@ -28,7 +28,7 @@ const getTrainerPage = expressAsyncHandler(async (req, res, next) => {
     return;
   }
 
-  res.render('main', {
+  response.render('main', {
     componentName: 'trainerPage',
     trainerData,
   });
