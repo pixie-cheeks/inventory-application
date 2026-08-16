@@ -3,6 +3,8 @@
 }
 
 .body {
+  display: flex;
+  flex-direction: column;
   min-height: 100dvh;
   overflow-y: scroll;
 }
@@ -19,21 +21,16 @@
   list-style: none;
 }
 
-.link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.nav__link {
-  text-decoration: underline;
-}
-
 .link:hover {
   opacity: 0.8;
 }
 
 .link:active {
   opacity: 0.6;
+}
+
+.main {
+  flex: 1;
 }
 
 .main__heading {
@@ -69,4 +66,12 @@
 .main__link-delete {
   background-color: rgb(228 14 14);
   color: white;
+}
+
+.pre {
+  max-width: 100%;
+  min-height: 2em;
+  overflow: auto;
+  scrollbar-gutter: stable;
+  font-family: 'Courier New', Courier, monospace;
 }

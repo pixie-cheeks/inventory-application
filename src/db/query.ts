@@ -31,7 +31,7 @@ const getAllTypesDB = async (): Promise<PokemonType[]> => {
   return rows;
 };
 
-const getType = async (id: number): Promise<PokemonType> => {
+const getType = async (id: number): Promise<PokemonType | undefined> => {
   const {
     rows: [row],
   } = await pool.query<PokemonType>('SELECT * FROM types WHERE id = $1;', [id]);
@@ -70,7 +70,7 @@ const getAllPokemonDB = async (): Promise<Pokemon[]> => {
   return rows;
 };
 
-const getPokemon = async (id: number): Promise<Pokemon> => {
+const getPokemon = async (id: number): Promise<Pokemon | undefined> => {
   const {
     rows: [row],
   } = await pool.query<Pokemon>('SELECT * FROM pokemons WHERE id = $1;', [id]);
@@ -116,7 +116,7 @@ const getAllTrainersDB = async (): Promise<Trainer[]> => {
   return rows;
 };
 
-const getTrainer = async (id: number): Promise<Trainer> => {
+const getTrainer = async (id: number): Promise<Trainer | undefined> => {
   const {
     rows: [row],
   } = await pool.query<Trainer>('SELECT * FROM trainers WHERE id = $1;', [id]);

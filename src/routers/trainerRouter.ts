@@ -6,7 +6,7 @@ import {
 
 const trainersRouter = Router();
 
-trainersRouter.get('/:trainerName', getTrainerPage);
+trainersRouter.get('/:trainerId', getTrainerPage);
 trainersRouter.get('/', getAllTrainers);
 
 export { trainersRouter };

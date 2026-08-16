@@ -1,0 +1,6 @@
+<% const {trainer_name, trainer_description, imageSrc} = trainerData; %>
+<% const getPosessive =
+name => name.toLowerCase().endsWith('s') ? `${name}'` : `${name}'s`; %>
+<h1><%= trainer_name %></h1>
+<p><%= trainer_description %></p>
+<img src="<%= imageSrc %>" alt="<%= getPosessive(trainer_name) %> appearance">

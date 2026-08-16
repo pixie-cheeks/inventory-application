@@ -1,7 +1,7 @@
 <ol>
-  <% for (const {trainer_name, trainer_description} of allTrainers) { %>
+  <% for (const {id, trainer_name, trainer_description} of allTrainers) { %>
   <li>
-    <a href="/trainers/<%- trainer_name %>"><%- trainer_name %></a>
+    <a href="/trainers/<%- id %>"><%- trainer_name %></a>
     <p><%- trainer_description %></p>
   </li>
   <% } %>
