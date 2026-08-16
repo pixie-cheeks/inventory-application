@@ -40,9 +40,9 @@
 .link-btn {
   display: inline-block;
   margin-bottom: 0.5em;
-  background-color: black;
+  background-color: hsl(0deg 0% 0%);
   padding: 0.5em;
-  color: white;
+  color: hsl(0deg 0% 100%);
 }
 
 .form {
@@ -64,8 +64,8 @@
 }
 
 .main__link-delete {
-  background-color: rgb(228 14 14);
-  color: white;
+  background-color: hsl(0deg 88% 47%);
+  color: hsl(0deg 0% 100%);
 }
 
 .pre {

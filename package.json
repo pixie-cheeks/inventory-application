@@ -31,7 +31,7 @@
   "devDependencies": {
     "@awmottaz/prettier-plugin-void-html": "2.2.1",
     "@pixie-cheeks/eslint-config": "17.0.0",
-    "@pixie-cheeks/stylelint-config": "5.0.0",
+    "@pixie-cheeks/stylelint-config": "8.0.0",
     "@types/express": "5.0.6",
     "@types/node": "26.2.0",
     "@types/pg": "8.21.0",
@@ -46,7 +46,7 @@
     "lint-staged": "17.3.0",
     "prettier": "3.9.6",
     "shelljs": "0.10.0",
-    "stylelint": "16.26.1",
+    "stylelint": "17.14.1",
     "tsx": "4.23.12",
     "typescript": "5.9.3",
     "typescript-eslint": "8.67.0"
