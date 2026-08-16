@@ -19,7 +19,7 @@
     "prepare": "husky",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@11.22.0",
   "dependencies": {
     "dotenv": "17.4.2",
     "ejs": "3.1.10",
@@ -33,10 +33,10 @@
     "@pixie-cheeks/eslint-config": "17.0.0",
     "@pixie-cheeks/stylelint-config": "5.0.0",
     "@types/express": "5.0.6",
-    "@types/node": "25.0.3",
+    "@types/node": "26.2.0",
     "@types/pg": "8.21.0",
     "@types/shelljs": "0.10.0",
-    "cspell": "9.4.0",
+    "cspell": "10.0.1",
     "ejs-lint": "2.0.1",
     "eslint": "9.39.2",
     "eslint-import-resolver-typescript": "4.4.5",
