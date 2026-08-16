@@ -22,7 +22,7 @@
   "packageManager": "pnpm@11.22.0",
   "dependencies": {
     "dotenv": "17.4.2",
-    "ejs": "3.1.10",
+    "ejs": "6.0.1",
     "express": "5.2.1",
     "express-async-handler": "1.2.0",
     "express-validator": "7.3.2",
@@ -43,7 +43,7 @@
     "eslint-plugin-import-x": "4.17.1",
     "husky": "9.1.7",
     "jiti": "2.7.0",
-    "lint-staged": "16.2.7",
+    "lint-staged": "17.3.0",
     "prettier": "3.9.6",
     "shelljs": "0.10.0",
     "stylelint": "16.26.1",
