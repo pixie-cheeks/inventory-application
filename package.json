@@ -9,7 +9,7 @@
     "node": "^24.19.0"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && node dist/tools/copyAssets.js",
+    "build": "tsc -p ./configs/tsconfig.build.json && node dist/tools/copyAssets.js",
     "preview": "node dist/app.js",
     "start": "tsx src/app.ts",
     "watch": "tsx --watch .",

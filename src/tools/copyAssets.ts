@@ -5,4 +5,4 @@ shell.cp('-R', ['src/views', 'src/public'], 'dist/');
 shell.cp('src/db/schema.sql', 'dist/db/schema.sql');
 
 // Remove unnecessary files
-shell.rm(['dist/public/js/*.ts', 'dist/public/js/*.json']);
+shell.rm('-f', ['dist/public/js/*.ts', 'dist/public/js/*.json']);
