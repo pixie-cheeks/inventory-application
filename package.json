@@ -12,7 +12,7 @@
     "build": "tsc -p ./configs/tsconfig.build.json && node dist/tools/copyAssets.js",
     "preview": "node dist/app.js",
     "start": "tsx src/app.ts",
-    "watch": "tsx --watch .",
+    "dev": "tsx --watch .",
     "populateDB": "tsx src/db/populateDatabase.ts",
     "lint:css": "stylelint .",
     "lint": "eslint",

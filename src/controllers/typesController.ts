@@ -32,6 +32,7 @@ const getParticularTypePage: RequestHandler = async (
 
   response.render('main', {
     componentName: 'particularType',
+    typeName: givenTypeName,
     allPokemonOfType,
   });
 };

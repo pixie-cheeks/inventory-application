@@ -1,0 +1,13 @@
+<h1>Info on Individual Pokemon</h1>
+<% const {pokemon_name, pokemon_description, image_src, type_one, type_two} = pokemon %>
+<p><%- pokemon_name %></p>
+<p><%- pokemon_description %></p>
+<img src="<%- image_src %> " alt="Appearance of <%- pokemon_name %>">
+<dl>
+  <dt>Type One</dt>
+  <dd><a href="/types/<%- type_one %>"><%- type_one %></a></dd>
+  <% if (type_two) { %>
+  <dt>Type Two</dt>
+  <dd><a href="/types/<%- type_two %>"><%- type_two %></a></dd>
+  <% } %>
+</dl>

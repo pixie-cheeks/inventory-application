@@ -71,7 +71,7 @@ const getAllPokemonDB = async (): Promise<Pokemon[]> => {
   return rows;
 };
 
-const getPokemon = async (id: number): Promise<Pokemon | undefined> => {
+const getPokemonDB = async (id: number): Promise<Pokemon | undefined> => {
   const { rows } = await pool.query<Pokemon>(
     'SELECT * FROM pokemons WHERE id = $1;',
     [id],
@@ -167,7 +167,7 @@ export {
   deleteAllTypes,
   //
   getAllPokemonDB,
-  getPokemon,
+  getPokemonDB,
   addPokemon,
   editPokemon,
   deletePokemon,
