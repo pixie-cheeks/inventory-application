@@ -5,7 +5,7 @@ import { CustomNotFoundError } from '../errors.js';
 const getTypesPage: RequestHandler = async (_request, response) => {
   const allTypes = await getAllTypesDB();
   response.render('main', {
-    componentName: 'types',
+    componentName: 'type/all',
     allTypes,
   });
 };
@@ -31,7 +31,7 @@ const getParticularTypePage: RequestHandler = async (
   );
 
   response.render('main', {
-    componentName: 'particularType',
+    componentName: 'type/one',
     typeName: givenTypeName,
     allPokemonOfType,
   });

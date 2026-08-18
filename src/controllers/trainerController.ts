@@ -10,7 +10,7 @@ const getAllTrainers: RequestHandler = async (_request, response) => {
   const allTrainers = await getAllTrainersDB();
   response.render('main', {
     allTrainers,
-    componentName: 'trainers',
+    componentName: 'trainer/all',
   });
 };
 
@@ -29,7 +29,7 @@ const getTrainerPage: RequestHandler = async (request, response, next) => {
   }
 
   response.render('main', {
-    componentName: 'trainerPage',
+    componentName: 'trainer/one',
     trainerData,
   });
 };
