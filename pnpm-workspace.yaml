@@ -4,6 +4,7 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - '@pixie-cheeks/stylelint-config@8.0.0'
   - '@pixie-cheeks/eslint-config@19.0.0 || 20.0.0'
+  - '@types/pg@8.23.1'
 onlyBuiltDependencies:
   - esbuild
   - unrs-resolver

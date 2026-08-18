@@ -1,4 +1,4 @@
-import expressAsyncHandler from 'express-async-handler';
+import type { RequestHandler } from 'express';
 import { CustomNotFoundError } from '../errors.js';
 import {
   getTrainer,
@@ -6,15 +6,15 @@ import {
   // getAllPokemonDB
 } from '../db/query.js';
 
-const getAllTrainers = expressAsyncHandler(async (_request, response) => {
+const getAllTrainers: RequestHandler = async (_request, response) => {
   const allTrainers = await getAllTrainersDB();
   response.render('main', {
     allTrainers,
     componentName: 'trainers',
   });
-});
+};
 
-const getTrainerPage = expressAsyncHandler(async (request, response, next) => {
+const getTrainerPage: RequestHandler = async (request, response, next) => {
   const givenTrainerId = Number(request.params.trainerId);
 
   if (Number.isNaN(givenTrainerId)) {
@@ -32,6 +32,6 @@ const getTrainerPage = expressAsyncHandler(async (request, response, next) => {
     componentName: 'trainerPage',
     trainerData,
   });
-});
+};
 
 export { getAllTrainers, getTrainerPage };
