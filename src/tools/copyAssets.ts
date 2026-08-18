@@ -1,5 +1,4 @@
-/* eslint-disable import-x/no-named-as-default-member */
-import shell from 'shelljs';
+import * as shell from 'shelljs';
 // Copy all the view templates and assets in the public folder
 shell.cp('-R', ['src/views', 'src/public'], 'dist/');
 shell.cp('src/db/schema.sql', 'dist/db/schema.sql');

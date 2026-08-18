@@ -1,12 +1,17 @@
+import type { Router as TypeRouter } from 'express';
 import { Router } from 'express';
 import {
   getAllTrainers,
   getTrainerPage,
 } from '../controllers/trainerController.js';
 
-const trainersRouter = Router();
+const createTrainerRouter = (): TypeRouter => {
+  const trainerRouter = Router();
 
-trainersRouter.get('/:trainerId', getTrainerPage);
-trainersRouter.get('/', getAllTrainers);
+  trainerRouter.get('/:trainerId', getTrainerPage);
+  trainerRouter.get('/', getAllTrainers);
 
-export { trainersRouter };
+  return trainerRouter;
+};
+
+export { createTrainerRouter };

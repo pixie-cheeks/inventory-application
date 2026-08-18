@@ -3,11 +3,11 @@ import express, {
   urlencoded as expressUrlencoded,
 } from 'express';
 import path from 'node:path';
-import { typesRouter } from './routers/typesRouter.js';
-import { indexRouter } from './routers/indexRouter.js';
+import { createTypesRouter } from './routers/typesRouter.js';
+import { createIndexRouter } from './routers/indexRouter.js';
 import { errorHandler } from './errors.js';
-import { pokemonRouter } from './routers/pokemonRouter.js';
-import { trainersRouter } from './routers/trainerRouter.js';
+import { createPokemonRouter } from './routers/pokemonRouter.js';
+import { createTrainerRouter } from './routers/trainerRouter.js';
 
 const PORT = process.env.PORT ?? 3_000;
 const { dirname } = import.meta;
@@ -18,10 +18,10 @@ app.set('view engine', 'ejs');
 app.use(expressStatic(path.join(dirname, 'public')));
 app.use(expressUrlencoded({ extended: true }));
 
-app.use('/pokemon', pokemonRouter);
-app.use('/types', typesRouter);
-app.use('/trainers', trainersRouter);
-app.use('/', indexRouter);
+app.use('/pokemon', createPokemonRouter());
+app.use('/types', createTypesRouter());
+app.use('/trainers', createTrainerRouter());
+app.use('/', createIndexRouter());
 
 app.use(errorHandler);
 
