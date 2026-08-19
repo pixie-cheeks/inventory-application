@@ -158,6 +158,8 @@ const deleteAllTrainers = async (): Promise<void> => {
   await pool.query('DELETE FROM Trainers;');
 };
 
+// const getOwnedPokemonByTrainer = () => {};
+
 export {
   getAllTypesDB,
   getType,
