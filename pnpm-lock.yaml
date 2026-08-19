@@ -28,8 +28,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1(prettier@3.9.6)
       '@pixie-cheeks/eslint-config':
-        specifier: 20.0.0
-        version: 20.0.0(@typescript-eslint/utils@8.67.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
+        specifier: 20.1.0
+        version: 20.1.0(@typescript-eslint/utils@8.67.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       '@pixie-cheeks/stylelint-config':
         specifier: 8.0.0
         version: 8.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@6.0.3))
@@ -727,8 +727,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@pixie-cheeks/eslint-config@20.0.0':
-    resolution: {integrity: sha512-fAwNbp2Wd7Xwklwj2M1/DXyLtq9Ox9BpPxH87zLLJAu2rJLSZugotiXPSkfutEbk/SrEUoE5ehGclrrMrUBQnw==}
+  '@pixie-cheeks/eslint-config@20.1.0':
+    resolution: {integrity: sha512-oU8Zt/HYcnBwlz+2vbjDqpSCdaH+KMPNhEUkIA/y17tuYEW8W0/EzCK/K4zvX94D0I+vdOFGfPhlCoohzI5Yog==}
     peerDependencies:
       eslint: ^10.8.1
 
@@ -3610,7 +3610,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
 
-  '@pixie-cheeks/eslint-config@20.0.0(@typescript-eslint/utils@8.67.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)':
+  '@pixie-cheeks/eslint-config@20.1.0(@typescript-eslint/utils@8.67.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)':
     dependencies:
       '@eslint/js': 10.0.1(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))

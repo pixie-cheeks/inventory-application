@@ -8,10 +8,13 @@ interface PokemonType {
 
 class DatabaseSeeder {
   pool: Client;
+  bam = 5;
+
   getAllTypesDB = async (): Promise<PokemonType[]> => {
     const { rows } = await this.pool.query<PokemonType>('SELECT * FROM types;');
     return rows;
   };
+
   getType = async (id: number): Promise<PokemonType | undefined> => {
     const { rows } = await this.pool.query<PokemonType>(
       'SELECT * FROM types WHERE id = $1;',
@@ -19,11 +22,13 @@ class DatabaseSeeder {
     );
     return rows.at(0);
   };
+
   addType = async ({ type_name }: Omit<PokemonType, 'id'>): Promise<void> => {
     await this.pool.query('INSERT INTO types (type_name) VALUES ($1);', [
       type_name,
     ]);
   };
+
   editType = async ({
     id,
     new_name,
@@ -36,9 +41,11 @@ class DatabaseSeeder {
       id,
     ]);
   };
+
   deleteType = async (id: string): Promise<void> => {
     await this.pool.query('DELETE FROM types WHERE id = $1;', [id]);
   };
+
   deleteAllTypes = async (): Promise<void> => {
     await this.pool.query('DELETE FROM types;');
   };
