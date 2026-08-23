@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS pokemons (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   pokemon_name TEXT UNIQUE,
   pokemon_description TEXT,
-  type_one TEXT REFERENCES types (type_name),
+  type_one TEXT REFERENCES types (type_name) ON DELETE CASCADE,
   type_two TEXT REFERENCES types (type_name) NULL,
   image_src TEXT NULL
 );
@@ -22,6 +22,6 @@ CREATE TABLE IF NOT EXISTS trainers (
 
 CREATE TABLE IF NOT EXISTS owned_pokemons (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  pokemon_id INTEGER REFERENCES pokemons (id),
-  trainer_id INTEGER REFERENCES trainers (id)
+  pokemon_id INTEGER REFERENCES pokemons (id) ON DELETE CASCADE,
+  trainer_id INTEGER REFERENCES trainers (id) ON DELETE CASCADE
 );
