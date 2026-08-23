@@ -17,7 +17,15 @@ class PokemonTableModel extends BaseTableModel<Pokemon> {
 
   async getRowsByTypeName(typeName: string): Promise<Pokemon[]> {
     const { rows } = await this.pool.query<Pokemon>(
-      `SELECT * FROM ${this.tableName} WHERE type_one = $1 OR type_two = $1;`,
+      /* sql */ `
+        SELECT
+          *
+        FROM
+          ${this.tableName}
+        WHERE
+          type_one = $1
+          OR type_two = $1;
+      `,
       [typeName],
     );
     return rows;
