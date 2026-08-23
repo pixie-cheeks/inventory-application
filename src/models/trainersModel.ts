@@ -5,8 +5,10 @@ interface Trainer {
   id: number;
   trainer_name: string;
   trainer_description: string;
+  image_src?: string;
 }
 
 const trainersTable = new BaseTableModel<Trainer>(pool, 'trainers');
 
 export { trainersTable };
+export type { Trainer };

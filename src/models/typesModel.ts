@@ -4,6 +4,7 @@ import { pool } from '../db/pool.js';
 interface PokemonType {
   id: number;
   type_name: string;
+  image_src?: string;
 }
 
 class TypesTableModel extends BaseTableModel<PokemonType> {
@@ -23,3 +24,4 @@ class TypesTableModel extends BaseTableModel<PokemonType> {
 const typesTable = new TypesTableModel();
 
 export { typesTable };
+export type { PokemonType };

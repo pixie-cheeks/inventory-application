@@ -1,55 +1,37 @@
 #!/usr/bin/env node
-import { configDotenv } from 'dotenv';
-import fs from 'node:fs';
-import { Client, type PoolConfig } from 'pg';
+import fs from 'node:fs/promises';
 import path from 'node:path';
-import { tableSeeds, type TableSchema } from './tableSeeds.js';
+import { pool } from './pool.js';
+import { dropTables, resetTables, seedTables } from './tableSeeder.js';
 
 const { dirname } = import.meta;
 const parameter = process.argv.at(2);
-const isProduction = parameter === '-p' || parameter === '--production';
+const shouldReset = parameter === '-r' || parameter === '--reset';
+const shouldDrop = parameter === '-d' || parameter === '--drop';
+
 const schemaSqlPath = path.resolve(dirname, './schema.sql');
-const configPath = path.resolve(
-  dirname,
-  `../../.env${isProduction ? '.production' : ''}`,
+const schemaSQL = await fs.readFile(schemaSqlPath, { encoding: 'utf8' });
+
+if (shouldDrop) {
+  console.log('Dropping tables first...');
+  await dropTables();
+  console.log('Successfully dropped all tables!');
+}
+
+console.log('Creating tables...');
+await pool.query(schemaSQL);
+console.log(
+  'Creating tables was successful! Skipped if the tables were already created.',
 );
 
-const schemaSQL = fs.readFileSync(schemaSqlPath).toString();
-const getConfig = (): PoolConfig =>
-  isProduction
-    ? {
-        ssl: {
-          rejectUnauthorized: true,
-          ca: process.env.DB_SSL_CA,
-        },
-      }
-    : {};
+if (shouldReset) {
+  console.log('Resetting tables...');
+  await resetTables();
+  console.log('Resetting tables was successful!');
+}
 
-configDotenv({
-  path: configPath,
-});
+console.log('Seeding those tables...');
+await seedTables();
 
-const client = new Client(getConfig());
-await client.connect();
-await client.query(schemaSQL);
-const formatInsertValues = (valueGroups: TableSchema['values']): string =>
-  valueGroups
-    .map((eachGroup) =>
-      eachGroup.map((eachValue) => `'${eachValue}'`).join(', '),
-    )
-    .map((eachGroupString) => `(${eachGroupString})`)
-    .join(', ');
-
-console.log('seeding...');
-await Promise.all(
-  Object.entries(tableSeeds).map(([tableName, tableData]) => {
-    if (!tableData) return Promise.resolve();
-
-    const sqlQueryString = `INSERT INTO ${tableName} (${tableData.columns.join(', ')})
-       VALUES ${formatInsertValues(tableData.values)} ON CONFLICT DO NOTHING;`;
-
-    return client.query(sqlQueryString);
-  }),
-);
-await client.end();
-console.log('done');
+await pool.end();
+console.log('Done! Successfully populated the databse.');

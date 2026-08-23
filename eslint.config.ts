@@ -15,6 +15,10 @@ export default defineConfig([
         tsconfigRootDir: import.meta.dirname,
       },
     },
+    rules: {
+      'no-void': ['error', { allowAsStatement: true }],
+      'no-restricted-syntax': 'off',
+    },
   },
   {
     files: ['{eslint,vite}.config.{js,ts}'],

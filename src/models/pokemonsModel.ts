@@ -7,6 +7,7 @@ interface Pokemon {
   pokemon_description: string;
   type_one: string;
   type_two?: string;
+  image_src?: string;
 }
 
 class PokemonTableModel extends BaseTableModel<Pokemon> {
@@ -26,3 +27,4 @@ class PokemonTableModel extends BaseTableModel<Pokemon> {
 const pokemonsTable = new PokemonTableModel();
 
 export { pokemonsTable };
+export type { Pokemon };

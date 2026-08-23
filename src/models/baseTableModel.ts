@@ -5,12 +5,16 @@ interface BaseRowType {
 }
 
 class BaseTableModel<RowType extends BaseRowType> {
-  protected tableName: string;
+  tableName: string;
   protected pool: Pool;
 
   constructor(pool: Pool, tableName: string) {
     this.pool = pool;
     this.tableName = tableName;
+  }
+
+  async dropTable(): Promise<undefined> {
+    await this.pool.query(`DROP TABLE IF EXISTS ${this.tableName};`);
   }
 
   async getAllRows(): Promise<RowType[]> {
@@ -68,7 +72,7 @@ class BaseTableModel<RowType extends BaseRowType> {
     await this.pool.query(`DELETE FROM ${this.tableName} WHERE id = $1;`, [id]);
   }
 
-  async deleteAllRows(): Promise<void> {
+  async deleteAllRows(): Promise<undefined> {
     await this.pool.query(`DELETE FROM ${this.tableName};`);
   }
 }
