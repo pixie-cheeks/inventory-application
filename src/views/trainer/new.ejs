@@ -1,0 +1,21 @@
+<form action="/trainers/new" method="post" class="form page__form">
+  <h1>Create a new trainer</h1>
+
+  <div class="form__field">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="trainer_name" required>
+  </div>
+
+  <div class="form__field">
+    <label for="description">Description</label>
+    <textarea class="textarea" name="description" id="trainer_description" required></textarea>
+  </div>
+
+  <div class="form__field">
+    <label for="image">Image</label>
+    <input type="file" id="image" name="image_src">
+  </div>
+
+  <div class="form__field"><button type="submit">Add Trainer</button></div>
+
+</form>

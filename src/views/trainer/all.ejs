@@ -1,3 +1,6 @@
+<h1>List of all trainers</h1>
+<a href="/trainers/new">Add a trainer</a>
+<% if (allTrainers.length > 0) { %>
 <ol>
   <% for (const {id, trainer_name, trainer_description} of allTrainers) { %>
   <li>
@@ -6,3 +9,4 @@
   </li>
   <% } %>
 </ol>
+<% } %>

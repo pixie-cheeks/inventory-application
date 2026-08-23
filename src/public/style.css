@@ -45,18 +45,25 @@
   color: hsl(0deg 0% 100%);
 }
 
+.page__form {
+  margin: 0 auto;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  align-items: start;
+  max-width: 500px;
+}
+
+.textarea {
+  resize: vertical;
 }
 
 .form__field {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  align-items: start;
 }
 
 .form__field--col {

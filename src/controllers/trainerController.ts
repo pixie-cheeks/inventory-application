@@ -34,4 +34,16 @@ const getTrainerPage: RequestHandler = async (request, response, next) => {
   });
 };
 
-export { getAllTrainers, getTrainerPage };
+const getNewTrainerPage: RequestHandler = (_request, response) => {
+  response.render('main', {
+    componentName: 'trainer/new',
+  });
+};
+
+const addNewTrainer: RequestHandler = (_request, response) => {
+  // const trainerData = request.body();
+  // await trainersTable.insertRow(trainerData);
+  response.redirect('/');
+};
+
+export { getAllTrainers, getTrainerPage, getNewTrainerPage, addNewTrainer };
