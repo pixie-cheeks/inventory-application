@@ -5,24 +5,24 @@ interface BaseRowType {
 }
 
 class BaseTableModel<RowType extends BaseRowType> {
-  pool: Pool;
-  tableName: string;
+  #pool: Pool;
+  #tableName: string;
 
   constructor(pool: Pool, tableName: string) {
-    this.pool = pool;
-    this.tableName = tableName;
+    this.#pool = pool;
+    this.#tableName = tableName;
   }
 
   async getAllRows(): Promise<RowType[]> {
-    const { rows } = await this.pool.query<RowType>(
-      `SELECT * FROM ${this.tableName};`,
+    const { rows } = await this.#pool.query<RowType>(
+      `SELECT * FROM ${this.#tableName};`,
     );
     return rows;
   }
 
   async getRowById(id: number): Promise<RowType | undefined> {
-    const { rows } = await this.pool.query<RowType>(
-      `SELECT * FROM ${this.tableName} WHERE id = $1;`,
+    const { rows } = await this.#pool.query<RowType>(
+      `SELECT * FROM ${this.#tableName} WHERE id = $1;`,
       [id],
     );
     return rows.at(0);
@@ -35,8 +35,8 @@ class BaseTableModel<RowType extends BaseRowType> {
       .map((_value, index) => `$${index + 1}`)
       .join(', ');
 
-    const { rows } = await this.pool.query<RowType>(
-      `INSERT INTO ${this.tableName} (${rowColumnsClause}) VALUES (${rowValuesClause}) RETURNING *;`,
+    const { rows } = await this.#pool.query<RowType>(
+      `INSERT INTO ${this.#tableName} (${rowColumnsClause}) VALUES (${rowValuesClause}) RETURNING *;`,
       rowValues,
     );
 
@@ -56,8 +56,8 @@ class BaseTableModel<RowType extends BaseRowType> {
       .map((columnName, index) => `${columnName} = $${index + 2}`)
       .join(', ');
 
-    const { rows } = await this.pool.query<RowType>(
-      `UPDATE ${this.tableName} SET ${generatedSetClause} WHERE id = $1 RETURNING *;`,
+    const { rows } = await this.#pool.query<RowType>(
+      `UPDATE ${this.#tableName} SET ${generatedSetClause} WHERE id = $1 RETURNING *;`,
       [id, ...Object.values(rowData)],
     );
 
@@ -65,11 +65,13 @@ class BaseTableModel<RowType extends BaseRowType> {
   }
 
   async deleteRowById(id: string): Promise<void> {
-    await this.pool.query(`DELETE FROM ${this.tableName} WHERE id = $1;`, [id]);
+    await this.#pool.query(`DELETE FROM ${this.#tableName} WHERE id = $1;`, [
+      id,
+    ]);
   }
 
   async deleteAllRows(): Promise<void> {
-    await this.pool.query(`DELETE FROM ${this.tableName};`);
+    await this.#pool.query(`DELETE FROM ${this.#tableName};`);
   }
 }
 
