@@ -10,6 +10,10 @@ interface Pokemon {
 }
 
 class PokemonTableModel extends BaseTableModel<Pokemon> {
+  constructor() {
+    super(pool, 'pokemons');
+  }
+
   async getRowsByTypeName(typeName: string): Promise<Pokemon[]> {
     const { rows } = await this.pool.query<Pokemon>(
       `SELECT * FROM ${this.tableName} WHERE type_one = $1 OR type_two = $1;`,
@@ -19,6 +23,6 @@ class PokemonTableModel extends BaseTableModel<Pokemon> {
   }
 }
 
-const pokemonsTable = new PokemonTableModel(pool, 'pokemons');
+const pokemonsTable = new PokemonTableModel();
 
 export { pokemonsTable };
