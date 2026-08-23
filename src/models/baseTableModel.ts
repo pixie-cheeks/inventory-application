@@ -1,14 +1,14 @@
-import type { Client } from 'pg';
+import type { Pool } from 'pg';
 
 interface BaseRowType {
   id: number;
 }
 
 class BaseTableModel<RowType extends BaseRowType> {
-  pool: Client;
+  pool: Pool;
   tableName: string;
 
-  constructor(pool: Client, tableName: string) {
+  constructor(pool: Pool, tableName: string) {
     this.pool = pool;
     this.tableName = tableName;
   }

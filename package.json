@@ -45,6 +45,7 @@
     "lint-staged": "17.3.0",
     "prettier": "3.9.6",
     "shelljs": "0.10.0",
+    "sql-formatter": "15.8.2",
     "stylelint": "17.14.1",
     "tsx": "4.23.12",
     "typescript": "6.0.3",
@@ -100,7 +101,7 @@
       "prettier --write --ignore-unknown"
     ],
     "*.sql": [
-      "sqlfluff fix --dialect postgres"
+      "sql-formatter --fix --language postgresql"
     ],
     "*.css": [
       "stylelint"
