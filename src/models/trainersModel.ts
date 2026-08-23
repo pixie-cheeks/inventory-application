@@ -7,6 +7,6 @@ interface Trainer {
   trainer_description: string;
 }
 
-const trainersTable = new BaseTableModel<Trainer>(pool, 'types');
+const trainersTable = new BaseTableModel<Trainer>(pool, 'trainers');
 
 export { trainersTable };
