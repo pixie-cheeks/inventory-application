@@ -36,7 +36,7 @@ class BaseTableModel<RowType extends BaseRowType> {
       .join(', ');
 
     const { rows } = await this.pool.query<RowType>(
-      `INSERT INTO ${this.tableName} (${rowColumnsClause}) VALUES (${rowValuesClause});`,
+      `INSERT INTO ${this.tableName} (${rowColumnsClause}) VALUES (${rowValuesClause}) RETURNING *;`,
       rowValues,
     );
 
@@ -47,12 +47,17 @@ class BaseTableModel<RowType extends BaseRowType> {
     id: number,
     rowData: Partial<Omit<RowType, 'id'>>,
   ): Promise<RowType | undefined> {
-    const generatedSetClause = Object.keys(rowData)
+    const rowColumns = Object.keys(rowData);
+
+    if (rowColumns.length === 0)
+      throw new Error('Edit Row needs at least one column to work.');
+
+    const generatedSetClause = rowColumns
       .map((columnName, index) => `${columnName} = $${index + 2}`)
       .join(', ');
 
     const { rows } = await this.pool.query<RowType>(
-      `UPDATE ${this.tableName} SET ${generatedSetClause} WHERE id = $1;`,
+      `UPDATE ${this.tableName} SET ${generatedSetClause} WHERE id = $1 RETURNING *;`,
       [id, ...Object.values(rowData)],
     );
 
