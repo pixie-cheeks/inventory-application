@@ -1,6 +1,6 @@
 <h1>Info on Individual Pokemon</h1>
 <% const {pokemon_name, pokemon_description, image_src, type_one, type_two} = pokemon %>
-<p><%- pokemon_name %></p>
+<h2><%- pokemon_name %></h2>
 <p><%- pokemon_description %></p>
 <img src="<%- image_src %> " alt="Appearance of <%- pokemon_name %>">
 <dl>
@@ -11,3 +11,15 @@
   <dd><a href="/types/<%- type_two %>"><%- type_two %></a></dd>
   <% } %>
 </dl>
+
+<% if (trainerOwners.length > 0) { %>
+<h3>Owned by the following trainers:</h3>
+<ul>
+  <% trainerOwners.forEach(({id, trainer_name}) => { %>
+  <li>
+    <h4><a href="/trainers/<%- id %>"><%- trainer_name %></a></h4>
+  </li>
+  <% }) %>
+</ul>
+
+<% } %>

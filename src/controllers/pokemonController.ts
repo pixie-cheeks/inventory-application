@@ -1,6 +1,7 @@
 import type { RequestHandler } from 'express';
 import { pokemonsTable } from '../models/pokemonsModel.js';
 import { CustomNotFoundError } from '../errors.js';
+import { ownedPokemonTable } from '../models/ownedPokemonTabelModel.js';
 
 const getPokemon: RequestHandler = async (request, response) => {
   const pokemonId = Number(request.params.id);
@@ -13,9 +14,13 @@ const getPokemon: RequestHandler = async (request, response) => {
     throw new CustomNotFoundError("Pokemon with this ID doesn't exist.");
   }
 
+  const trainerOwners =
+    await ownedPokemonTable.getTrainersByPokemonId(pokemonId);
+
   response.render('main', {
     pokemon,
     componentName: 'pokemon/one',
+    trainerOwners,
   });
 };
 
