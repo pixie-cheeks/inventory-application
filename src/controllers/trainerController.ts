@@ -1,13 +1,9 @@
 import type { RequestHandler } from 'express';
 import { CustomNotFoundError } from '../errors.js';
-import {
-  getTrainer,
-  getAllTrainersDB,
-  // getAllPokemonDB
-} from '../db/query.js';
+import { trainersTable } from '../models/trainersModel.js';
 
 const getAllTrainers: RequestHandler = async (_request, response) => {
-  const allTrainers = await getAllTrainersDB();
+  const allTrainers = await trainersTable.getAllRows();
   response.render('main', {
     allTrainers,
     componentName: 'trainer/all',
@@ -21,7 +17,7 @@ const getTrainerPage: RequestHandler = async (request, response, next) => {
     next(new CustomNotFoundError('Invalid ID for trainer.'));
     return;
   }
-  const trainerData = await getTrainer(givenTrainerId);
+  const trainerData = await trainersTable.getRowById(givenTrainerId);
 
   if (!trainerData) {
     next(new CustomNotFoundError('Trainer with this ID does not exist.'));

@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'express';
-import { getAllPokemonDB, getPokemonDB } from '../db/query.js';
+import { pokemonsTable } from '../models/pokemonsModel.js';
 import { CustomNotFoundError } from '../errors.js';
 
 const getPokemon: RequestHandler = async (request, response) => {
@@ -8,7 +8,7 @@ const getPokemon: RequestHandler = async (request, response) => {
     throw new CustomNotFoundError('Invalid Pokemon ID.');
   }
 
-  const pokemon = await getPokemonDB(pokemonId);
+  const pokemon = await pokemonsTable.getRowById(pokemonId);
   if (!pokemon) {
     throw new CustomNotFoundError("Pokemon with this ID doesn't exist.");
   }
@@ -20,7 +20,7 @@ const getPokemon: RequestHandler = async (request, response) => {
 };
 
 const getAllPokemon: RequestHandler = async (_request, response) => {
-  const allPokemon = await getAllPokemonDB();
+  const allPokemon = await pokemonsTable.getAllRows();
   response.render('main', {
     allPokemon,
     componentName: 'pokemon/all',
