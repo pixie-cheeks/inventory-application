@@ -5,7 +5,7 @@ interface BaseRowType {
 }
 
 class BaseTableModel<RowType extends BaseRowType> {
-  tableName: string;
+  protected tableName: string;
   protected pool: Pool;
 
   constructor(pool: Pool, tableName: string) {
