@@ -1,6 +1,7 @@
 import type { RequestHandler } from 'express';
 import { CustomNotFoundError } from '../errors.js';
 import { trainersTable } from '../models/trainersModel.js';
+import { ownedPokemonTable } from '../models/ownedPokemonTabelModel.js';
 
 const getAllTrainers: RequestHandler = async (_request, response) => {
   const allTrainers = await trainersTable.getAllRows();
@@ -18,6 +19,8 @@ const getTrainerPage: RequestHandler = async (request, response, next) => {
     return;
   }
   const trainerData = await trainersTable.getRowById(givenTrainerId);
+  const ownedPokemons =
+    await ownedPokemonTable.getPokemonsByTrainerId(givenTrainerId);
 
   if (!trainerData) {
     next(new CustomNotFoundError('Trainer with this ID does not exist.'));
@@ -27,6 +30,7 @@ const getTrainerPage: RequestHandler = async (request, response, next) => {
   response.render('main', {
     componentName: 'trainer/one',
     trainerData,
+    ownedPokemons,
   });
 };
 

@@ -1,6 +1,29 @@
-<% const {trainer_name, trainer_description, imageSrc} = trainerData; %>
-<% const getPosessive =
-name => name.toLowerCase().endsWith('s') ? `${name}'` : `${name}'s`; %>
-<h1><%= trainer_name %></h1>
-<p><%= trainer_description %></p>
-<img src="<%= imageSrc %>" alt="<%= getPosessive(trainer_name) %> appearance">
+<% const { trainer_name, trainer_description, imageSrc } = trainerData; %>
+<% const getPosessive = name => name.toLowerCase().endsWith('s') ? `${name}'` : `${name}'s`; %>
+<h1>Individual trainer page</h1>
+<h2>
+  <%= trainer_name %>
+</h2>
+<p>
+  <%= trainer_description %>
+</p>
+<img src="<%= imageSrc %>" alt="<%= getPosessive(trainer_name) %>appearance">
+
+<% if (ownedPokemons.length > 0) { %>
+<h3>Owned Pokemon</h3>
+<ol>
+  <% ownedPokemons.forEach(({id, pokemon_name, type_one, type_two}) => { %>
+  <li>
+    <h4><a href="/pokemon/<%- id %>"><%- pokemon_name %></a></h4>
+    <dl>
+      <dt>Type One</dt>
+      <dd><a href="/types/<%- type_one %>"><%- type_one %></a></dd>
+      <% if (type_two) { %>
+      <dt>Type Two</dt>
+      <dd><a href="/types/<%- type_two %>"><%- type_two %></a></dd>
+      <% } %>
+    </dl>
+  </li>
+  <% }) %>
+</ol>
+<% } %>
