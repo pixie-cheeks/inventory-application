@@ -11,7 +11,29 @@ type Trainer = {
   id: number;
 } & InsertionTrainer;
 
-const trainersTable = new BaseTableModel<Trainer>(pool, 'trainers');
+class TrainerTableModel extends BaseTableModel<Trainer> {
+  constructor() {
+    super(pool, 'trainers');
+  }
+
+  async getTrainerByName(trainer_name: string): Promise<Trainer | undefined> {
+    const { rows } = await this.pool.query<Trainer>(
+      /* sql */ `
+        SELECT
+          *
+        FROM
+          ${this.tableName}
+        WHERE
+          trainer_name = $1;
+      `,
+      [trainer_name],
+    );
+
+    return rows.at(0);
+  }
+}
+
+const trainersTable = new TrainerTableModel();
 
 export { trainersTable };
 export type { Trainer, InsertionTrainer };

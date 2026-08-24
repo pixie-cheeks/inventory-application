@@ -57,6 +57,26 @@ class OwnedPokemonTableModel extends BaseTableModel<OwnedPokemon> {
     );
     return rows;
   }
+
+  async insertPokemonsInTrainerById(
+    trainerId: number,
+    pokemonIds: number[],
+  ): Promise<OwnedPokemon[]> {
+    const valuesClause = pokemonIds
+      .map((_pokemonId, index) => `$1, $${index + 2}`)
+      .join('), ');
+    const { rows } = await this.pool.query<OwnedPokemon>(
+      /* sql */ `
+        INSERT INTO
+          ${this.tableName} (trainer_id, pokemon_id)
+        VALUES
+          (${valuesClause});
+      `,
+      [trainerId, ...pokemonIds],
+    );
+
+    return rows;
+  }
 }
 
 const ownedPokemonTable = new OwnedPokemonTableModel();

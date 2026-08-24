@@ -93,7 +93,7 @@ class BaseTableModel<RowType extends BaseRowType> {
     return rows.at(0);
   }
 
-  async deleteRowById(id: string): Promise<void> {
+  async deleteRowById(id: number): Promise<void> {
     await this.pool.query(
       /* sql */ `
         DELETE FROM ${this.tableName}
@@ -101,6 +101,17 @@ class BaseTableModel<RowType extends BaseRowType> {
           id = $1;
       `,
       [id],
+    );
+  }
+
+  async deleteMultipleRowsById(ids: number[]): Promise<void> {
+    await this.pool.query(
+      /* sql */ `
+        DELETE FROM ${this.tableName}
+        WHERE
+          id IN (${ids.map((_id, index) => `$${index + 1}`).join(', ')});
+      `,
+      ids,
     );
   }
 

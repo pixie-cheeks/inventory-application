@@ -4,6 +4,7 @@ import { CustomNotFoundError } from '../errors.js';
 import { trainersTable } from '../models/trainersModel.js';
 import { ownedPokemonTable } from '../models/ownedPokemonTabelModel.js';
 import type { InsertionTrainer } from '../models/trainersModel.js';
+import { pokemonsTable } from '../models/pokemonsModel.js';
 
 const getAllTrainers: RequestHandler = async (_request, response) => {
   const allTrainers = await trainersTable.getAllRows();
@@ -36,29 +37,34 @@ const getTrainerPage: RequestHandler = async (request, response, next) => {
   });
 };
 
-const getNewTrainerPage: RequestHandler = (_request, response) => {
+const getNewTrainerPage: RequestHandler = async (_request, response) => {
   response.render('main', {
     componentName: 'trainer/new',
+    allPokemon: await pokemonsTable.getAllRows(),
   });
 };
 
 const emptyError = 'cannot be empty.';
-const textError = 'must only contain letters, numbers, spaces';
 
 const trainerCreationSchema = [
   body('trainer_name')
     .trim()
     .notEmpty()
     .withMessage(`Name ${emptyError}.`)
-    .matches(/^[a-z 1-9]+$/gi)
-    .withMessage(`Name ${textError} and no newlines.`),
+    .custom(async (trainer_name: string) => {
+      const trainer = await trainersTable.getTrainerByName(trainer_name);
+      if (trainer) throw new Error('A trainer already exists with this name.');
+    }),
   body('trainer_description')
     .trim()
     .notEmpty()
-    .withMessage(`Description ${emptyError}`)
-    .matches(/^[a-z 1-9\r\n]+$/gi)
-    .withMessage(`Description ${textError} and newlines.`),
-  body('image_src').optional({ values: 'falsy' }).isURL(),
+    .withMessage(`Description ${emptyError}`),
+  body('image_src')
+    .trim()
+    .optional({ values: 'falsy' })
+    .isURL()
+    .withMessage('Trainer Image URL must be valid.'),
+  body('owned_pokemon').optional({ values: 'falsy' }).toArray().toInt(),
 ];
 
 const addTrainer: RequestHandler = async (request, response) => {
@@ -66,14 +72,23 @@ const addTrainer: RequestHandler = async (request, response) => {
   if (!errors.isEmpty()) {
     response.status(400).render('main', {
       componentName: 'trainer/new',
+      allPokemon: await pokemonsTable.getAllRows(),
       errors: errors.array(),
     });
     return;
   }
 
-  const trainerData = matchedData<InsertionTrainer>(request);
-  await trainersTable.insertRow(trainerData);
-  response.redirect('/');
+  const { owned_pokemon, ...trainerData } = matchedData<
+    InsertionTrainer & { owned_pokemon?: number[] }
+  >(request);
+  const insertedTrainer = await trainersTable.insertRow(trainerData);
+  if (!insertedTrainer) throw new Error('Failed to create trainer.');
+  if (owned_pokemon)
+    await ownedPokemonTable.insertPokemonsInTrainerById(
+      insertedTrainer.id,
+      owned_pokemon,
+    );
+  response.redirect('/trainers');
 };
 
 const trainerCreate = [trainerCreationSchema, addTrainer];
