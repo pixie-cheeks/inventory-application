@@ -19,11 +19,12 @@
     "prepare": "husky",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "packageManager": "pnpm@11.22.0",
+  "packageManager": "pnpm@11.23.0",
   "dependencies": {
     "dotenv": "17.4.2",
     "ejs": "6.0.1",
     "express": "5.2.1",
+    "express-ejs-layouts": "2.5.1",
     "express-validator": "7.3.2",
     "pg": "8.23.0"
   },
@@ -32,6 +33,7 @@
     "@pixie-cheeks/eslint-config": "20.1.0",
     "@pixie-cheeks/stylelint-config": "8.0.0",
     "@types/express": "5.0.6",
+    "@types/express-ejs-layouts": "2.5.4",
     "@types/node": "26.2.0",
     "@types/pg": "8.23.1",
     "@types/shelljs": "0.10.0",
