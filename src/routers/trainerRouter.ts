@@ -1,7 +1,7 @@
 import type { Router as TypeRouter } from 'express';
 import { Router } from 'express';
 import {
-  addNewTrainer,
+  trainerCreate,
   getAllTrainers,
   getNewTrainerPage,
   getTrainerPage,
@@ -10,7 +10,7 @@ import {
 const createTrainerRouter = (): TypeRouter => {
   const trainerRouter = Router();
 
-  trainerRouter.post('/new', addNewTrainer);
+  trainerRouter.post('/new', ...trainerCreate);
   trainerRouter.get('/new', getNewTrainerPage);
   trainerRouter.get('/:trainerId', getTrainerPage);
   trainerRouter.get('/', getAllTrainers);

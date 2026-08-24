@@ -1,7 +1,9 @@
 import type { RequestHandler } from 'express';
+import { body, matchedData, validationResult } from 'express-validator';
 import { CustomNotFoundError } from '../errors.js';
 import { trainersTable } from '../models/trainersModel.js';
 import { ownedPokemonTable } from '../models/ownedPokemonTabelModel.js';
+import type { InsertionTrainer } from '../models/trainersModel.js';
 
 const getAllTrainers: RequestHandler = async (_request, response) => {
   const allTrainers = await trainersTable.getAllRows();
@@ -40,10 +42,40 @@ const getNewTrainerPage: RequestHandler = (_request, response) => {
   });
 };
 
-const addNewTrainer: RequestHandler = (_request, response) => {
-  // const trainerData = request.body();
-  // await trainersTable.insertRow(trainerData);
+const emptyError = 'cannot be empty.';
+const textError = 'must only contain letters, numbers, spaces';
+
+const trainerCreationSchema = [
+  body('trainer_name')
+    .trim()
+    .notEmpty()
+    .withMessage(`Name ${emptyError}.`)
+    .matches(/^[a-z 1-9]+$/gi)
+    .withMessage(`Name ${textError} and no newlines.`),
+  body('trainer_description')
+    .trim()
+    .notEmpty()
+    .withMessage(`Description ${emptyError}`)
+    .matches(/^[a-z 1-9\r\n]+$/gi)
+    .withMessage(`Description ${textError} and newlines.`),
+  body('image_src').optional({ values: 'falsy' }).isURL(),
+];
+
+const addTrainer: RequestHandler = async (request, response) => {
+  const errors = validationResult(request);
+  if (!errors.isEmpty()) {
+    response.status(400).render('main', {
+      componentName: 'trainer/new',
+      errors: errors.array(),
+    });
+    return;
+  }
+
+  const trainerData = matchedData<InsertionTrainer>(request);
+  await trainersTable.insertRow(trainerData);
   response.redirect('/');
 };
 
-export { getAllTrainers, getTrainerPage, getNewTrainerPage, addNewTrainer };
+const trainerCreate = [trainerCreationSchema, addTrainer];
+
+export { getAllTrainers, getTrainerPage, getNewTrainerPage, trainerCreate };

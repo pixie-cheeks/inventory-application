@@ -1,3 +1,5 @@
+<%- include('../partials/error') %>
+
 <form action="/trainers/new" method="post" class="form page__form">
   <h1>Create a new trainer</h1>
 
@@ -8,12 +10,12 @@
 
   <div class="form__field">
     <label for="description">Description</label>
-    <textarea class="textarea" name="description" id="trainer_description" required></textarea>
+    <textarea class="textarea" name="trainer_description" id="description" required></textarea>
   </div>
 
   <div class="form__field">
-    <label for="image">Image</label>
-    <input type="file" id="image" name="image_src">
+    <label for="image">Trainer Image URL</label>
+    <input type="url" id="image" name="image_src">
   </div>
 
   <div class="form__field"><button type="submit">Add Trainer</button></div>

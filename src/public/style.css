@@ -82,3 +82,26 @@
   scrollbar-gutter: stable;
   font-family: 'Courier New', Courier, monospace;
 }
+
+.multiline-text {
+  white-space: pre-line;
+}
+
+.img-container {
+  border-radius: 50%;
+  box-shadow: inset 0 1px 1px hsl(0deg 0% 0% / 56.2%);
+  aspect-ratio: 1;
+  width: 3rem;
+  overflow: hidden;
+}
+
+.img {
+  display: block;
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  font-style: italic;
+  object-fit: contain;
+  object-position: center;
+}
