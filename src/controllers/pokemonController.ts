@@ -18,6 +18,7 @@ const getPokemon: RequestHandler = async (request, response) => {
     await ownedPokemonTable.getTrainersByPokemonId(pokemonId);
 
   response.render('main', {
+    title: pokemon.pokemon_name,
     pokemon,
     componentName: 'pokemon/one',
     trainerOwners,
@@ -27,6 +28,7 @@ const getPokemon: RequestHandler = async (request, response) => {
 const getAllPokemon: RequestHandler = async (_request, response) => {
   const allPokemon = await pokemonsTable.getAllRows();
   response.render('main', {
+    title: 'All Pokemon',
     allPokemon,
     componentName: 'pokemon/all',
   });

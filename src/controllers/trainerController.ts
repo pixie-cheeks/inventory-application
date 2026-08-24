@@ -9,6 +9,7 @@ import { pokemonsTable } from '../models/pokemonsModel.js';
 const getAllTrainers: RequestHandler = async (_request, response) => {
   const allTrainers = await trainersTable.getAllRows();
   response.render('main', {
+    title: 'Trainers',
     allTrainers,
     componentName: 'trainer/all',
   });
@@ -31,6 +32,7 @@ const getTrainerPage: RequestHandler = async (request, response, next) => {
   }
 
   response.render('main', {
+    title: trainerData.trainer_name,
     componentName: 'trainer/one',
     trainerData,
     ownedPokemons,
@@ -39,6 +41,7 @@ const getTrainerPage: RequestHandler = async (request, response, next) => {
 
 const getNewTrainerPage: RequestHandler = async (_request, response) => {
   response.render('main', {
+    title: 'Add trainer',
     componentName: 'trainer/new',
     allPokemon: await pokemonsTable.getAllRows(),
   });
@@ -71,6 +74,7 @@ const addTrainer: RequestHandler = async (request, response) => {
   const errors = validationResult(request);
   if (!errors.isEmpty()) {
     response.status(400).render('main', {
+      title: 'Add trainer',
       componentName: 'trainer/new',
       allPokemon: await pokemonsTable.getAllRows(),
       errors: errors.array(),

@@ -64,7 +64,7 @@ class OwnedPokemonTableModel extends BaseTableModel<OwnedPokemon> {
   ): Promise<OwnedPokemon[]> {
     const valuesClause = pokemonIds
       .map((_pokemonId, index) => `$1, $${index + 2}`)
-      .join('), ');
+      .join('), (');
     const { rows } = await this.pool.query<OwnedPokemon>(
       /* sql */ `
         INSERT INTO
