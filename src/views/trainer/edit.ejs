@@ -25,7 +25,7 @@
   <div class="form__field">
     <label for="pokemon">Owned Pokemon</label>
     <select name="owned_pokemon" id="pokemon" multiple>
-      <option value="" disabled>Select</option>
+      <option value="">Select</option>
       <% allPokemon.forEach(({id, pokemon_name, selected}) => { %>
       <option value="<%- id %>" <%- selected && 'selected="selected"' %>><%- pokemon_name %></option>
       <% }) %>

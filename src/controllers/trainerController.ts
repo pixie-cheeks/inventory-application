@@ -101,7 +101,13 @@ const trainerCreationSchema = [
     .optional({ values: 'falsy' })
     .isURL()
     .withMessage('Trainer Image URL must be valid.'),
-  body('owned_pokemon').optional({ values: 'falsy' }).toArray().toInt(),
+  body('owned_pokemon')
+    .optional({ values: 'falsy' })
+    .toArray()
+    .toInt()
+    .customSanitizer((pokemonIdArray: number[]) =>
+      pokemonIdArray.filter((pokemonId) => !Number.isNaN(pokemonId)),
+    ),
 ];
 
 const addTrainer: RequestHandler = async (request, response) => {
@@ -184,6 +190,9 @@ const editTrainer: RequestHandler = async (request, response) => {
       trainerId,
       owned_pokemon,
     );
+  } else {
+    // No pokemon set! Delete all owned pokemons hahahahah!
+    await ownedPokemonTable.deleteRowsByTrainerId(trainerId);
   }
 
   response.redirect(`/trainers/${trainerId}`);
