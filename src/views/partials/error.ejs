@@ -1,4 +1,14 @@
 <% if (locals.errors) {%>
+<script id="error-data" type="application/json">
+  <%- JSON.stringify(errors) %>
+</script>
+<% if (locals.givenData) { %>
+<script id="given-data" type="application/json">
+  <%- JSON.stringify(givenData) %>
+</script>
+<% } %>
+<script defer src="/scripts/formErrors.js"></script>
+
 <ul>
   <% errors.forEach(function(error) { %>
   <li><%= error.msg %></li>

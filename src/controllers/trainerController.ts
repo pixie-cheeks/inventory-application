@@ -78,6 +78,7 @@ const addTrainer: RequestHandler = async (request, response) => {
       componentName: 'trainer/new',
       allPokemon: await pokemonsTable.getAllRows(),
       errors: errors.array(),
+      givenData: request.body as Record<string, string>,
     });
     return;
   }

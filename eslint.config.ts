@@ -18,6 +18,7 @@ export default defineConfig([
     rules: {
       'no-void': ['error', { allowAsStatement: true }],
       'no-restricted-syntax': 'off',
+      'no-continue': 'off',
     },
   },
   {
@@ -39,6 +40,16 @@ export default defineConfig([
     files: ['src/tools/**/*'],
     rules: {
       'import-x/no-extraneous-dependencies': 'off',
+    },
+  },
+  {
+    files: ['src/public/**/*'],
+
+    languageOptions: {
+      globals: pixie.globals.browser,
+    },
+    rules: {
+      'n/no-unsupported-features/node-builtins': 'off',
     },
   },
   pixie.prettier,
