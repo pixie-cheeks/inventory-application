@@ -28,7 +28,6 @@ for (const error of errorData) {
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const setMultiselectData = (selectDom, optionData) => {
-  console.log({ selectDom, optionData });
   for (const optionId of optionData) {
     /**
      * @type {HTMLOptionElement | null}
@@ -36,7 +35,6 @@ const setMultiselectData = (selectDom, optionData) => {
     const option = selectDom.querySelector(
       `option[value="${CSS.escape(optionId.toString())}"]`,
     );
-    console.log({ option });
     if (option) option.selected = true;
   }
 };
@@ -56,4 +54,3 @@ for (const [fieldName, fieldValue] of Object.entries(givenData)) {
 
   fieldDom.value = fieldValue;
 }
-console.log({ givenData });

@@ -50,6 +50,7 @@ export default defineConfig([
     },
     rules: {
       'n/no-unsupported-features/node-builtins': 'off',
+      'no-console': ['error', { allow: ['warn', 'error'] }],
     },
   },
   pixie.prettier,
