@@ -1,14 +1,17 @@
 import { BaseTableModel } from './baseTableModel.js';
 import { pool } from '../db/pool.js';
 
-interface Pokemon {
-  id: number;
+interface InsertionPokemon {
   pokemon_name: string;
   pokemon_description: string;
   type_one: string;
   type_two?: string;
   image_src?: string;
 }
+
+type Pokemon = {
+  id: number;
+} & InsertionPokemon;
 
 class PokemonTableModel extends BaseTableModel<Pokemon> {
   constructor() {
@@ -35,4 +38,4 @@ class PokemonTableModel extends BaseTableModel<Pokemon> {
 const pokemonsTable = new PokemonTableModel();
 
 export { pokemonsTable };
-export type { Pokemon };
+export type { Pokemon, InsertionPokemon };

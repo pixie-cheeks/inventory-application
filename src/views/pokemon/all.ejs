@@ -1,4 +1,9 @@
 <h1>All pokemon</h1>
+
+<% if (locals.haveTypes) { %>
+<a href="/pokemon/new">Add a New Pokemon</a>
+<% } %>
+
 <ol>
   <% for (const {id, pokemon_name, pokemon_description, type_one, type_two} of allPokemon) { %>
   <li>
