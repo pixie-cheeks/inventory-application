@@ -2,7 +2,7 @@ import type { RequestHandler } from 'express';
 import { body, matchedData, validationResult } from 'express-validator';
 import { CustomNotFoundError } from '../errors.js';
 import { trainersTable } from '../models/trainersModel.js';
-import { ownedPokemonTable } from '../models/ownedPokemonTabelModel.js';
+import { ownedPokemonTable } from '../models/ownedPokemonTableModel.js';
 import type { InsertionTrainer } from '../models/trainersModel.js';
 import { pokemonsTable } from '../models/pokemonsModel.js';
 

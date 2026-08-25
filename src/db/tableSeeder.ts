@@ -4,7 +4,7 @@ import { typesTable, type PokemonType } from '../models/typesModel.js';
 import {
   ownedPokemonTable,
   type OwnedPokemon,
-} from '../models/ownedPokemonTabelModel.js';
+} from '../models/ownedPokemonTableModel.js';
 
 type InsertionPokemonType = Omit<PokemonType, 'id'>;
 type InsertionPokemon = Omit<Pokemon, 'id'>;

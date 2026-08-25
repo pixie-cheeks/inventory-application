@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'express';
 import { pokemonsTable } from '../models/pokemonsModel.js';
 import { CustomNotFoundError } from '../errors.js';
-import { ownedPokemonTable } from '../models/ownedPokemonTabelModel.js';
+import { ownedPokemonTable } from '../models/ownedPokemonTableModel.js';
 
 const getPokemon: RequestHandler = async (request, response) => {
   const pokemonId = Number(request.params.id);
