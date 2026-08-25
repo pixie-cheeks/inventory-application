@@ -1,3 +1,4 @@
+import format from 'pg-format';
 import { BaseTableModel } from './baseTableModel.js';
 import { pool } from '../db/pool.js';
 import type { Pokemon } from './pokemonsModel.js';
@@ -61,7 +62,8 @@ class OwnedPokemonTableModel extends BaseTableModel<OwnedPokemon> {
   async insertPokemonsInTrainerById(
     trainerId: number,
     pokemonIds: number[],
-  ): Promise<OwnedPokemon[]> {
+  ): Promise<OwnedPokemon[] | undefined> {
+    if (pokemonIds.length === 0) return;
     const valuesClause = pokemonIds
       .map((_pokemonId, index) => `$1, $${index + 2}`)
       .join('), (');
@@ -70,12 +72,59 @@ class OwnedPokemonTableModel extends BaseTableModel<OwnedPokemon> {
         INSERT INTO
           ${this.tableName} (trainer_id, pokemon_id)
         VALUES
-          (${valuesClause});
+          (${valuesClause})
+        ON CONFLICT DO NOTHING;
       `,
       [trainerId, ...pokemonIds],
     );
 
     return rows;
+  }
+
+  async getRowsByTrainerId(trainerId: number): Promise<OwnedPokemon[]> {
+    const { rows } = await this.pool.query<OwnedPokemon>(
+      /* sql */ `
+        SELECT
+          *
+        FROM
+          ${this.tableName}
+        WHERE
+          trainer_id = $1
+      `,
+      [trainerId],
+    );
+
+    return rows;
+  }
+
+  async deleteTrainerRowsByPokemonIds(
+    trainerId: number,
+    pokemonIds: number[],
+  ): Promise<void> {
+    if (pokemonIds.length === 0) return;
+    await this.pool.query(
+      format(
+        `
+          DELETE FROM ${this.tableName}
+          WHERE
+            trainer_id = $1
+            AND pokemon_id IN (%L)
+        `,
+        pokemonIds,
+      ),
+      [trainerId],
+    );
+  }
+
+  async deleteRowsByTrainerId(trainerId: number): Promise<void> {
+    await this.pool.query(
+      /* sql */ `
+        DELETE FROM ${this.tableName}
+        WHERE
+          trainer_id = $1
+      `,
+      [trainerId],
+    );
   }
 }
 

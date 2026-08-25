@@ -26,7 +26,8 @@
     "express": "5.2.1",
     "express-ejs-layouts": "2.5.1",
     "express-validator": "7.3.2",
-    "pg": "8.23.0"
+    "pg": "8.23.0",
+    "pg-format": "1.0.4"
   },
   "devDependencies": {
     "@awmottaz/prettier-plugin-void-html": "2.2.1",
@@ -36,6 +37,7 @@
     "@types/express-ejs-layouts": "2.5.4",
     "@types/node": "26.2.0",
     "@types/pg": "8.23.1",
+    "@types/pg-format": "1.0.5",
     "@types/shelljs": "0.10.0",
     "cspell": "10.0.1",
     "ejs-lint": "2.0.1",
