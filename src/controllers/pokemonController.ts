@@ -1,4 +1,4 @@
-import { validationResult, matchedData } from 'express-validator';
+import { validationResult, matchedData, body } from 'express-validator';
 import type { RequestHandler } from 'express';
 import {
   pokemonsTable,
@@ -56,14 +56,64 @@ const getNewPokemonPage: RequestHandler = async (_request, response) => {
   });
 };
 
+const emptyError = 'cannot be empty';
+
+const pokemonCreationSchema = [
+  body('pokemon_name')
+    .trim()
+    .notEmpty()
+    .withMessage(`Name ${emptyError}.`)
+    .custom(
+      async (
+        pokemon_name: string,
+        { req }: { req: { body?: Record<string, string> } },
+      ) => {
+        const pokemon = await pokemonsTable.getPokemonByName(pokemon_name);
+        if (pokemon?.id === Number(req.body?.id)) return;
+        if (pokemon)
+          throw new Error('A trainer already exists with this name.');
+      },
+    ),
+  body('pokemon_description')
+    .trim()
+    .notEmpty()
+    .withMessage(`Description ${emptyError}`),
+  body('type_one')
+    .trim()
+    .notEmpty()
+    .withMessage('The primary type of a pokemon is required.'),
+  body('type_two')
+    .optional({ values: 'falsy' })
+    .trim()
+    .notEmpty()
+    .custom(
+      (
+        type_two: string,
+        { req }: { req: { body?: Record<string, string> } },
+      ) => {
+        if (type_two === req.body?.type_one)
+          throw new Error("The primary and secondary types can't be the same.");
+        return true;
+      },
+    ),
+  body('image_src')
+    .trim()
+    .optional({ values: 'falsy' })
+    .isURL()
+    .withMessage('Trainer Image URL must be valid.'),
+];
+
 const addPokemon: RequestHandler = async (request, response) => {
   const errors = validationResult(request);
+  const givenData = request.body as Record<string, string>;
+
   if (!errors.isEmpty()) {
     response.status(400).render('main', {
       title: 'Add Pokemon',
       componentName: 'pokemon/new',
+      allTypes: await typesTable.getAllRows(),
       errors: errors.array(),
-      givenData: request.body as Record<string, string>,
+      givenData,
     });
     return;
   }
@@ -74,6 +124,6 @@ const addPokemon: RequestHandler = async (request, response) => {
   response.redirect('/pokemon');
 };
 
-const pokemonCreation = [addPokemon];
+const pokemonCreation = [pokemonCreationSchema, addPokemon];
 
 export { getAllPokemon, getPokemon, pokemonCreation, getNewPokemonPage };

@@ -33,6 +33,22 @@ class PokemonTableModel extends BaseTableModel<Pokemon> {
     );
     return rows;
   }
+
+  async getPokemonByName(pokemonName: string): Promise<Pokemon | undefined> {
+    const { rows } = await this.pool.query<Pokemon>(
+      /* sql */ `
+        SELECT
+          *
+        FROM
+          ${this.tableName}
+        WHERE
+          pokemon_name = $1
+      `,
+      [pokemonName],
+    );
+
+    return rows.at(0);
+  }
 }
 
 const pokemonsTable = new PokemonTableModel();
