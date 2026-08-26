@@ -40,17 +40,11 @@ const typeCreationSchema = [
     .trim()
     .notEmpty()
     .withMessage("Name can't be empty.")
-    .custom(
-      async (
-        type_name: string,
-        { req }: { req: { body?: Record<string, string> } },
-      ) => {
-        const pokemon = await pokemonsTable.getPokemonByName(type_name);
-        if (pokemon?.id === Number(req.body?.id)) return;
-        if (pokemon)
-          throw new Error('A pokemon already exists with this name.');
-      },
-    ),
+    .custom(async (type_name: string, { req }) => {
+      const typeData = await typesTable.getRowByTypeName(type_name);
+      if (typeData?.type_name === req.params?.typeName) return;
+      if (typeData) throw new Error('A type already exists with this name.');
+    }),
   body('image_src')
     .optional({ values: 'falsy' })
     .trim()
@@ -65,6 +59,21 @@ const getNewTypePage: RequestHandler = (_request, response) => {
   });
 };
 
+const getEditTypePage: RequestHandler = async (request, response) => {
+  const { typeName } = request.params;
+  if (Array.isArray(typeName))
+    throw new CustomNotFoundError('Invalid type name.');
+
+  const typeData = await typesTable.getRowByTypeName(typeName);
+  if (!typeData) throw new CustomNotFoundError('No type with this name found.');
+
+  response.render('main', {
+    typeData,
+    title: 'Edit Type',
+    componentName: 'type/edit',
+  });
+};
+
 const addNewType: RequestHandler = async (request, response) => {
   const errors = validationResult(request);
   const givenData = request.body as Record<string, string>;
@@ -76,6 +85,7 @@ const addNewType: RequestHandler = async (request, response) => {
       errors: errors.array(),
       givenData,
     });
+    return;
   }
   const typeData = matchedData<PokemonType>(request);
 
@@ -84,6 +94,42 @@ const addNewType: RequestHandler = async (request, response) => {
   response.redirect('/types');
 };
 
-const typeCreation = [typeCreationSchema, addNewType];
+const editType: RequestHandler = async (request, response) => {
+  const { typeName } = request.params;
+  if (Array.isArray(typeName))
+    throw new CustomNotFoundError('Invalid type name.');
 
-export { getTypesPage, getParticularTypePage, getNewTypePage, typeCreation };
+  const typeData = await typesTable.getRowByTypeName(typeName);
+  if (!typeData) throw new CustomNotFoundError('No type with this name found.');
+
+  const errors = validationResult(request);
+  const givenData = request.body as Record<string, string>;
+
+  if (!errors.isEmpty()) {
+    response.render('main', {
+      typeData,
+      title: 'Edit Type',
+      componentName: 'type/edit',
+      errors: errors.array(),
+      givenData,
+    });
+    return;
+  }
+  const newTypeData = matchedData<Omit<PokemonType, 'id'>>(request);
+
+  await typesTable.editRowById(typeData.id, newTypeData);
+
+  response.redirect(`/types/${newTypeData.type_name}`);
+};
+
+const typeCreation = [typeCreationSchema, addNewType];
+const typeUpdate = [typeCreationSchema, editType];
+
+export {
+  getTypesPage,
+  getParticularTypePage,
+  getNewTypePage,
+  typeCreation,
+  getEditTypePage,
+  typeUpdate,
+};

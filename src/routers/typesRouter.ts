@@ -1,10 +1,12 @@
 import type { Router as TypeRouter } from 'express';
 import { Router } from 'express';
 import {
+  getEditTypePage,
   getNewTypePage,
   getParticularTypePage,
   getTypesPage,
   typeCreation,
+  typeUpdate,
 } from '../controllers/typesController.js';
 
 const createTypesRouter = (): TypeRouter => {
@@ -12,6 +14,8 @@ const createTypesRouter = (): TypeRouter => {
 
   typesRouter.post('/new', ...typeCreation);
   typesRouter.get('/new', getNewTypePage);
+  typesRouter.post('/:typeName/edit', ...typeUpdate);
+  typesRouter.get('/:typeName/edit', getEditTypePage);
   typesRouter.get('/:typeName', getParticularTypePage);
   typesRouter.get('/', getTypesPage);
 

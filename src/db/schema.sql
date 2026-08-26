@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS pokemons (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   pokemon_name TEXT UNIQUE NOT NULL,
   pokemon_description TEXT NOT NULL,
-  type_one TEXT REFERENCES types (type_name) ON DELETE CASCADE NOT NULL,
-  type_two TEXT REFERENCES types (type_name) NULL,
+  type_one TEXT REFERENCES types (type_name) ON DELETE CASCADE ON UPDATE CASCADE NOT NULL,
+  type_two TEXT REFERENCES types (type_name) ON UPDATE CASCADE NULL,
   image_src TEXT NULL
 );
 
