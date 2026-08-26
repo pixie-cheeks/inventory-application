@@ -198,6 +198,15 @@ const editTrainer: RequestHandler = async (request, response) => {
   response.redirect(`/trainers/${trainerId}`);
 };
 
+const deleteTrainer: RequestHandler = async (request, response) => {
+  const trainerId = Number(request.params.trainerId);
+  if (Number.isNaN(trainerId))
+    throw new CustomNotFoundError('Invalid trainer ID.');
+
+  await trainersTable.deleteRowById(trainerId);
+  response.status(200).send({ redirectTo: '/trainers' });
+};
+
 const trainerCreate = [trainerCreationSchema, addTrainer];
 const trainerUpdate = [trainerCreationSchema, editTrainer];
 
@@ -208,4 +217,5 @@ export {
   trainerCreate,
   getEditTrainerPage,
   trainerUpdate,
+  deleteTrainer,
 };

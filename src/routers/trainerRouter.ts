@@ -7,6 +7,7 @@ import {
   getNewTrainerPage,
   getTrainerPage,
   getEditTrainerPage,
+  deleteTrainer,
 } from '../controllers/trainerController.js';
 
 const createTrainerRouter = (): TypeRouter => {
@@ -14,6 +15,7 @@ const createTrainerRouter = (): TypeRouter => {
 
   trainerRouter.post('/new', ...trainerCreate);
   trainerRouter.get('/new', getNewTrainerPage);
+  trainerRouter.delete('/:trainerId', deleteTrainer);
   trainerRouter.post('/:trainerId/edit', ...trainerUpdate);
   trainerRouter.get('/:trainerId/edit', getEditTrainerPage);
   trainerRouter.get('/:trainerId', getTrainerPage);

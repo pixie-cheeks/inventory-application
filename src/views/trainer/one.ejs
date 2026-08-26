@@ -5,6 +5,16 @@
   <%= trainer_name %>
 </h2>
 <a href="/trainers/<%- trainerId %>/edit">Edit Trainer Details</a>
+<%- include(
+  '../partials/delete',
+  {
+    deleteData: {
+      categoryName: 'Trainer',
+      itemName: trainer_name,
+      formAction: `/trainers/${trainerId}`
+},
+}
+) %>
 
 <p class="multiline-text"><%= trainer_description %></p>
 <div class="img-container">

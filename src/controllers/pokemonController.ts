@@ -172,6 +172,15 @@ const addPokemon: RequestHandler = async (request, response) => {
   response.redirect('/pokemon');
 };
 
+const deletePokemon: RequestHandler = async (request, response) => {
+  const pokemonId = Number(request.params.id);
+  if (Number.isNaN(pokemonId))
+    throw new CustomNotFoundError('Invalid trainer ID.');
+
+  await pokemonsTable.deleteRowById(pokemonId);
+  response.status(200).send({ redirectTo: '/pokemon' });
+};
+
 const pokemonCreation = [pokemonCreationSchema, addPokemon];
 const pokemonUpdate = [pokemonUpdateSchema, editPokemon];
 
@@ -182,4 +191,5 @@ export {
   getNewPokemonPage,
   getEditPokemonPage,
   pokemonUpdate,
+  deletePokemon,
 };

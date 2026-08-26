@@ -3,6 +3,16 @@
 <h2><%- pokemon_name %></h2>
 
 <a href="/pokemon/<%- pokemonId %>/edit">Edit Pokemon Details</a>
+<%- include(
+  '../partials/delete',
+  {
+    deleteData: {
+      categoryName: 'Pokemon',
+      itemName: pokemon_name,
+      formAction: `/pokemon/${pokemonId}`
+},
+}
+) %>
 
 <p><%- pokemon_description %></p>
 <img src="<%- image_src %> " alt="Appearance of <%- pokemon_name %>">
