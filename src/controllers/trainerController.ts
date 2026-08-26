@@ -203,6 +203,13 @@ const deleteTrainer: RequestHandler = async (request, response) => {
   if (Number.isNaN(trainerId))
     throw new CustomNotFoundError('Invalid trainer ID.');
 
+  const errors = validationResult(request);
+
+  if (!errors.isEmpty()) {
+    response.status(400).send({ errors: errors.array() });
+    return;
+  }
+
   await trainersTable.deleteRowById(trainerId);
   response.status(200).send({ redirectTo: '/trainers' });
 };

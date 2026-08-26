@@ -9,13 +9,14 @@ import {
   getEditTrainerPage,
   deleteTrainer,
 } from '../controllers/trainerController.js';
+import { adminValidation } from '../utils/adminValidation.js';
 
 const createTrainerRouter = (): TypeRouter => {
   const trainerRouter = Router();
 
   trainerRouter.post('/new', ...trainerCreate);
   trainerRouter.get('/new', getNewTrainerPage);
-  trainerRouter.delete('/:trainerId', deleteTrainer);
+  trainerRouter.delete('/:trainerId', adminValidation, deleteTrainer);
   trainerRouter.post('/:trainerId/edit', ...trainerUpdate);
   trainerRouter.get('/:trainerId/edit', getEditTrainerPage);
   trainerRouter.get('/:trainerId', getTrainerPage);

@@ -127,6 +127,13 @@ const deleteType: RequestHandler = async (request, response) => {
   if (Array.isArray(typeName))
     throw new CustomNotFoundError('Invalid type name.');
 
+  const errors = validationResult(request);
+
+  if (!errors.isEmpty()) {
+    response.status(400).send({ errors: errors.array() });
+    return;
+  }
+
   await typesTable.deleteRowByTypeName(typeName);
   response.status(200).send({ redirectTo: '/types' });
 };

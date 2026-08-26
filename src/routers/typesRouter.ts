@@ -9,13 +9,14 @@ import {
   typeCreation,
   typeUpdate,
 } from '../controllers/typesController.js';
+import { adminValidation } from '../utils/adminValidation.js';
 
 const createTypesRouter = (): TypeRouter => {
   const typesRouter = Router();
 
   typesRouter.post('/new', ...typeCreation);
   typesRouter.get('/new', getNewTypePage);
-  typesRouter.delete('/:typeName', deleteType);
+  typesRouter.delete('/:typeName', adminValidation, deleteType);
   typesRouter.post('/:typeName/edit', ...typeUpdate);
   typesRouter.get('/:typeName/edit', getEditTypePage);
   typesRouter.get('/:typeName', getParticularTypePage);

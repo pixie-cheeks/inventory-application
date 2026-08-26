@@ -6,6 +6,8 @@
   <p>You're going to delete the <%- categoryName.toLowerCase() %> "<%= itemName %>." Are you sure?</p>
 
   <form id="delete-form" action="<%- formAction %>">
+    <label for="delete-password">Enter Admin Password</label>
+    <input type="password" name="admin_password" id="delete-password">
     <button type="button" commandfor="delete-dialog" command="close">No, Keep it.</button>
     <button type="submit">Yes, Delete it!</button>
   </form>

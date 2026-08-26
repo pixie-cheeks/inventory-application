@@ -9,13 +9,14 @@ import {
   pokemonUpdate,
   deletePokemon,
 } from '../controllers/pokemonController.js';
+import { adminValidation } from '../utils/adminValidation.js';
 
 const createPokemonRouter = (): TypeRouter => {
   const pokemonRouter = Router();
 
   pokemonRouter.post('/new', ...pokemonCreation);
   pokemonRouter.get('/new', getNewPokemonPage);
-  pokemonRouter.delete('/:id', deletePokemon);
+  pokemonRouter.delete('/:id', adminValidation, deletePokemon);
   pokemonRouter.post('/:id/edit', ...pokemonUpdate);
   pokemonRouter.get('/:id/edit', getEditPokemonPage);
   pokemonRouter.get('/:id', getPokemon);

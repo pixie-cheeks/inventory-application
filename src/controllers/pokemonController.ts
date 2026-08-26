@@ -177,6 +177,13 @@ const deletePokemon: RequestHandler = async (request, response) => {
   if (Number.isNaN(pokemonId))
     throw new CustomNotFoundError('Invalid trainer ID.');
 
+  const errors = validationResult(request);
+
+  if (!errors.isEmpty()) {
+    response.status(400).send({ errors: errors.array() });
+    return;
+  }
+
   await pokemonsTable.deleteRowById(pokemonId);
   response.status(200).send({ redirectTo: '/pokemon' });
 };
