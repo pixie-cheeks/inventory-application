@@ -2,7 +2,7 @@
 <% for( const {type_name} of allTypes ) { %>
 
 <option value="<%= type_name %>" <%-
- selectedType === type_name && 'selected="selected"'
+ locals.selectedType === type_name && 'selected="selected"'
 %>><%= type_name %></option>
 
 <% } %>

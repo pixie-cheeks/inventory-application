@@ -3,7 +3,6 @@ import type { RequestHandler } from 'express';
 import {
   pokemonsTable,
   type InsertionPokemon,
-  type Pokemon,
 } from '../models/pokemonsModel.js';
 import { CustomNotFoundError } from '../errors.js';
 import { ownedPokemonTable } from '../models/ownedPokemonTableModel.js';
@@ -123,29 +122,30 @@ const pokemonCreationSchema = [
     .withMessage('Pokemon Image URL must be valid.'),
 ];
 
-const pokemonUpdateSchema = [body('id').toInt(), ...pokemonCreationSchema];
+const pokemonUpdateSchema = [...pokemonCreationSchema];
 
 const editPokemon: RequestHandler = async (request, response) => {
   const errors = validationResult(request);
   const givenData = request.body as Record<string, string>;
+  const pokemonId = Number(request.params.id);
+
+  if (Number.isNaN(pokemonId)) {
+    throw new CustomNotFoundError('No pokemon with this ID found.');
+  }
 
   if (!errors.isEmpty()) {
     response.status(400).render('main', {
       title: 'Edit Pokemon',
-      componentName: 'pokemon/new',
+      componentName: `pokemon/edit`,
       allTypes: await typesTable.getAllRows(),
       errors: errors.array(),
+      pokemonData: { id: pokemonId },
       givenData,
     });
     return;
   }
 
-  const { id: pokemonId, ...pokemonData } = matchedData<Pokemon>(request);
-  const pokemonWithThisId = await pokemonsTable.getRowById(pokemonId);
-
-  if (!pokemonWithThisId)
-    throw new CustomNotFoundError('No pokemon with this ID.');
-
+  const pokemonData = matchedData<InsertionPokemon>(request);
   await pokemonsTable.editRowById(pokemonId, pokemonData);
 
   response.redirect(`/pokemon/${pokemonId}`);
