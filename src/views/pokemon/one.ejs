@@ -1,6 +1,9 @@
 <h1>Info on Individual Pokemon</h1>
-<% const {pokemon_name, pokemon_description, image_src, type_one, type_two} = pokemon %>
+<% const {id: pokemonId, pokemon_name, pokemon_description, image_src, type_one, type_two} = pokemon %>
 <h2><%- pokemon_name %></h2>
+
+<a href="/pokemon/<%- pokemonId %>/edit">Edit Pokemon Details</a>
+
 <p><%- pokemon_description %></p>
 <img src="<%- image_src %> " alt="Appearance of <%- pokemon_name %>">
 <dl>

@@ -56,6 +56,25 @@ const getNewPokemonPage: RequestHandler = async (_request, response) => {
   });
 };
 
+const getEditPokemonPage: RequestHandler = async (request, response) => {
+  const pokemonId = Number(request.params.id);
+  if (Number.isNaN(pokemonId))
+    throw new CustomNotFoundError('Invalid pokemon ID.');
+
+  const pokemonData = await pokemonsTable.getRowById(pokemonId);
+  if (!pokemonData)
+    throw new CustomNotFoundError('No pokemon with this ID exist.');
+
+  const allTypes = await typesTable.getAllRows();
+
+  response.render('main', {
+    title: 'Edit Pokemon',
+    componentName: 'pokemon/edit',
+    pokemonData,
+    allTypes,
+  });
+};
+
 const emptyError = 'cannot be empty';
 
 const pokemonCreationSchema = [
@@ -126,4 +145,10 @@ const addPokemon: RequestHandler = async (request, response) => {
 
 const pokemonCreation = [pokemonCreationSchema, addPokemon];
 
-export { getAllPokemon, getPokemon, pokemonCreation, getNewPokemonPage };
+export {
+  getAllPokemon,
+  getPokemon,
+  pokemonCreation,
+  getNewPokemonPage,
+  getEditPokemonPage,
+};

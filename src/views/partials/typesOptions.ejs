@@ -1,6 +1,8 @@
 <option value="">Select</option>
 <% for( const {type_name} of allTypes ) { %>
 
-<option value="<%= type_name %>"><%= type_name %></option>
+<option value="<%= type_name %>" <%-
+ selectedType === type_name && 'selected="selected"'
+%>><%= type_name %></option>
 
 <% } %>

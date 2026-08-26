@@ -1,38 +1,39 @@
 <%- include('../partials/error') %>
+<% const {id, pokemon_name, pokemon_description, type_one, type_two, image_src} = pokemonData %>
 
-<% const {id: trainerId, trainer_name, trainer_description, image_src } = trainerData; %>
+<form action="/pokemon/new" method="post" class="form page__form">
+  <h1>Edit Pokemon Details</h1>
 
-<form action="/trainers/<%- trainerId %>/edit" method="post" class="form page__form">
-  <h1>Edit Trainer Details</h1>
-
-  <input type="hidden" name="id" value="<%- trainerId %>">
+  <input type="hidden" name="id" value="<%- id %>">
   <div class="form__field">
     <label for="name">Name</label>
-    <input type="text" id="name" name="trainer_name" required value="<%- trainer_name %>">
+    <input type="text" id="name" name="pokemon_name" required value="<%- pokemon_name %>">
   </div>
 
   <div class="form__field">
     <label for="description">Description</label>
-    <textarea class="textarea" name="trainer_description" id="description" required><%- trainer_description %></textarea>
+    <textarea class="textarea" name="pokemon_description" id="description" required><%- pokemon_description %></textarea>
   </div>
 
   <div class="form__field">
-    <label for="image">Trainer Image URL</label>
-    <input type="url" id="image" name="image_src" <%-image_src && `value="${image_src}"`  %>>
-  </div>
-
-  <% if (locals.allPokemon?.length > 0) { %>
-  <div class="form__field">
-    <label for="pokemon">Owned Pokemon</label>
-    <select name="owned_pokemon" id="pokemon" multiple>
-      <option value="">Select</option>
-      <% allPokemon.forEach(({id, pokemon_name, selected}) => { %>
-      <option value="<%- id %>" <%- selected && 'selected="selected"' %>><%- pokemon_name %></option>
-      <% }) %>
+    <label for="type-one">Type One</label>
+    <select id="type-one" name="type_one" required>
+      <%- include('../partials/typesOptions', {selectedType: type_one}) %>
     </select>
   </div>
-  <% } %>
 
-  <div class="form__field"><button type="submit">Save Updates</button></div>
+  <div class="form__field">
+    <label for="type-two">Type Two</label>
+    <select id="type-two" name="type_two">
+      <%- include('../partials/typesOptions', {selectedType: type_two}) %>
+    </select>
+  </div>
+
+  <div class="form__field">
+    <label for="image">Pokemon Image URL</label>
+    <input type="url" id="image" name="image_src">
+  </div>
+
+  <div class="form__field"><button type="submit">Save updates</button></div>
 
 </form>
