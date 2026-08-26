@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS pokemons (
   pokemon_name TEXT UNIQUE NOT NULL,
   pokemon_description TEXT NOT NULL,
   type_one TEXT REFERENCES types (type_name) ON DELETE CASCADE ON UPDATE CASCADE NOT NULL,
-  type_two TEXT REFERENCES types (type_name) ON UPDATE CASCADE NULL,
+  type_two TEXT REFERENCES types (type_name) ON DELETE SET NULL ON UPDATE CASCADE NULL,
   image_src TEXT NULL
 );
 

@@ -19,6 +19,16 @@ export default defineConfig([
       'no-void': ['error', { allowAsStatement: true }],
       'no-restricted-syntax': 'off',
       'no-continue': 'off',
+      'no-restricted-globals': 'off',
+      '@typescript-eslint/no-misused-promises': [
+        'error',
+        {
+          checksVoidReturn: {
+            arguments: false,
+            attributes: false,
+          },
+        },
+      ],
     },
   },
   {

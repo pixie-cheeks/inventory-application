@@ -122,6 +122,15 @@ const editType: RequestHandler = async (request, response) => {
   response.redirect(`/types/${newTypeData.type_name}`);
 };
 
+const deleteType: RequestHandler = async (request, response) => {
+  const { typeName } = request.params;
+  if (Array.isArray(typeName))
+    throw new CustomNotFoundError('Invalid type name.');
+
+  await typesTable.deleteRowByTypeName(typeName);
+  response.status(200).send({ redirectTo: '/types' });
+};
+
 const typeCreation = [typeCreationSchema, addNewType];
 const typeUpdate = [typeCreationSchema, editType];
 
@@ -132,4 +141,5 @@ export {
   typeCreation,
   getEditTypePage,
   typeUpdate,
+  deleteType,
 };

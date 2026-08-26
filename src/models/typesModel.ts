@@ -26,6 +26,17 @@ class TypesTableModel extends BaseTableModel<PokemonType> {
     );
     return rows.at(0);
   }
+
+  async deleteRowByTypeName(typeName: string): Promise<void> {
+    await this.pool.query(
+      /* sql */ `
+        DELETE FROM ${this.tableName}
+        WHERE
+          type_name = $1
+      `,
+      [typeName],
+    );
+  }
 }
 
 const typesTable = new TypesTableModel();

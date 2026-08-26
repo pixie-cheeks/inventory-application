@@ -1,6 +1,7 @@
 import type { Router as TypeRouter } from 'express';
 import { Router } from 'express';
 import {
+  deleteType,
   getEditTypePage,
   getNewTypePage,
   getParticularTypePage,
@@ -14,6 +15,7 @@ const createTypesRouter = (): TypeRouter => {
 
   typesRouter.post('/new', ...typeCreation);
   typesRouter.get('/new', getNewTypePage);
+  typesRouter.delete('/:typeName', deleteType);
   typesRouter.post('/:typeName/edit', ...typeUpdate);
   typesRouter.get('/:typeName/edit', getEditTypePage);
   typesRouter.get('/:typeName', getParticularTypePage);

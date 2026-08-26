@@ -1,0 +1,17 @@
+<% if (locals.deleteData) { %>
+<% const {categoryName, itemName, formAction} = deleteData %>
+
+<dialog id="delete-dialog" closedby="any">
+  <h1>Delete <%- categoryName %></h1>
+  <p>You're going to delete the <%- categoryName.toLowerCase() %> "<%= itemName %>." Are you sure?</p>
+
+  <form id="delete-form" action="<%- formAction %>">
+    <button type="button" commandfor="delete-dialog" command="close">No, Keep it.</button>
+    <button type="submit">Yes, Delete it!</button>
+  </form>
+</dialog>
+
+<button type="button" id="open-delete-dialog-btn" commandfor="delete-dialog" command="show-modal">Delete <%- categoryName %></button>
+
+<script type="module" src="/scripts/deleteDialog.js"></script>
+<% } %>

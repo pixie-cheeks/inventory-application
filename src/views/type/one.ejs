@@ -1,4 +1,14 @@
 <a href="/types/<%- typeName %>/edit">Edit Type Details</a>
+<%- include(
+  '../partials/delete',
+  {
+    deleteData: {
+      categoryName: 'Type',
+      itemName: typeName,
+      formAction: `/types/${typeName}`
+},
+}
+) %>
 <% if (allPokemonOfType.length === 0) { %>
 <p>Oops! No pokemon of type <%- typeName %></p>
 <% } else { %>
