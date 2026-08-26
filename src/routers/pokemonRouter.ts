@@ -6,6 +6,7 @@ import {
   pokemonCreation,
   getPokemon,
   getEditPokemonPage,
+  pokemonUpdate,
 } from '../controllers/pokemonController.js';
 
 const createPokemonRouter = (): TypeRouter => {
@@ -13,6 +14,7 @@ const createPokemonRouter = (): TypeRouter => {
 
   pokemonRouter.post('/new', ...pokemonCreation);
   pokemonRouter.get('/new', getNewPokemonPage);
+  pokemonRouter.post('/:id/edit', ...pokemonUpdate);
   pokemonRouter.get('/:id/edit', getEditPokemonPage);
   pokemonRouter.get('/:id', getPokemon);
   pokemonRouter.get('/', getAllPokemon);

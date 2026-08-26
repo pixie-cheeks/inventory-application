@@ -1,7 +1,7 @@
 <%- include('../partials/error') %>
 <% const {id, pokemon_name, pokemon_description, type_one, type_two, image_src} = pokemonData %>
 
-<form action="/pokemon/new" method="post" class="form page__form">
+<form action="/pokemon/<%- id %>/edit" method="post" class="form page__form">
   <h1>Edit Pokemon Details</h1>
 
   <input type="hidden" name="id" value="<%- id %>">

@@ -3,6 +3,7 @@ import type { RequestHandler } from 'express';
 import {
   pokemonsTable,
   type InsertionPokemon,
+  type Pokemon,
 } from '../models/pokemonsModel.js';
 import { CustomNotFoundError } from '../errors.js';
 import { ownedPokemonTable } from '../models/ownedPokemonTableModel.js';
@@ -90,7 +91,7 @@ const pokemonCreationSchema = [
         const pokemon = await pokemonsTable.getPokemonByName(pokemon_name);
         if (pokemon?.id === Number(req.body?.id)) return;
         if (pokemon)
-          throw new Error('A trainer already exists with this name.');
+          throw new Error('A pokemon already exists with this name.');
       },
     ),
   body('pokemon_description')
@@ -122,6 +123,34 @@ const pokemonCreationSchema = [
     .withMessage('Trainer Image URL must be valid.'),
 ];
 
+const pokemonUpdateSchema = [body('id').toInt(), ...pokemonCreationSchema];
+
+const editPokemon: RequestHandler = async (request, response) => {
+  const errors = validationResult(request);
+  const givenData = request.body as Record<string, string>;
+
+  if (!errors.isEmpty()) {
+    response.status(400).render('main', {
+      title: 'Edit Pokemon',
+      componentName: 'pokemon/new',
+      allTypes: await typesTable.getAllRows(),
+      errors: errors.array(),
+      givenData,
+    });
+    return;
+  }
+
+  const { id: pokemonId, ...pokemonData } = matchedData<Pokemon>(request);
+  const pokemonWithThisId = await pokemonsTable.getRowById(pokemonId);
+
+  if (!pokemonWithThisId)
+    throw new CustomNotFoundError('No pokemon with this ID.');
+
+  await pokemonsTable.editRowById(pokemonId, pokemonData);
+
+  response.redirect(`/pokemon/${pokemonId}`);
+};
+
 const addPokemon: RequestHandler = async (request, response) => {
   const errors = validationResult(request);
   const givenData = request.body as Record<string, string>;
@@ -144,6 +173,7 @@ const addPokemon: RequestHandler = async (request, response) => {
 };
 
 const pokemonCreation = [pokemonCreationSchema, addPokemon];
+const pokemonUpdate = [pokemonUpdateSchema, editPokemon];
 
 export {
   getAllPokemon,
@@ -151,4 +181,5 @@ export {
   pokemonCreation,
   getNewPokemonPage,
   getEditPokemonPage,
+  pokemonUpdate,
 };
