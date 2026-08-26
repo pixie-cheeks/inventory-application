@@ -120,7 +120,7 @@ const pokemonCreationSchema = [
     .trim()
     .optional({ values: 'falsy' })
     .isURL()
-    .withMessage('Trainer Image URL must be valid.'),
+    .withMessage('Pokemon Image URL must be valid.'),
 ];
 
 const pokemonUpdateSchema = [body('id').toInt(), ...pokemonCreationSchema];

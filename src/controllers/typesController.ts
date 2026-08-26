@@ -1,5 +1,6 @@
+import { body, matchedData, validationResult } from 'express-validator';
 import type { RequestHandler } from 'express';
-import { typesTable } from '../models/typesModel.js';
+import { type PokemonType, typesTable } from '../models/typesModel.js';
 import { pokemonsTable } from '../models/pokemonsModel.js';
 import { CustomNotFoundError } from '../errors.js';
 
@@ -34,4 +35,55 @@ const getParticularTypePage: RequestHandler<{ typeName: string }> = async (
   });
 };
 
-export { getTypesPage, getParticularTypePage };
+const typeCreationSchema = [
+  body('type_name')
+    .trim()
+    .notEmpty()
+    .withMessage("Name can't be empty.")
+    .custom(
+      async (
+        type_name: string,
+        { req }: { req: { body?: Record<string, string> } },
+      ) => {
+        const pokemon = await pokemonsTable.getPokemonByName(type_name);
+        if (pokemon?.id === Number(req.body?.id)) return;
+        if (pokemon)
+          throw new Error('A pokemon already exists with this name.');
+      },
+    ),
+  body('image_src')
+    .optional({ values: 'falsy' })
+    .trim()
+    .isURL()
+    .withMessage('Type Image URL must be, well, a URL.'),
+];
+
+const getNewTypePage: RequestHandler = (_request, response) => {
+  response.render('main', {
+    title: 'Add Type',
+    componentName: 'type/new',
+  });
+};
+
+const addNewType: RequestHandler = async (request, response) => {
+  const errors = validationResult(request);
+  const givenData = request.body as Record<string, string>;
+
+  if (!errors.isEmpty()) {
+    response.render('main', {
+      title: 'Add Type',
+      componentName: 'type/new',
+      errors: errors.array(),
+      givenData,
+    });
+  }
+  const typeData = matchedData<PokemonType>(request);
+
+  await typesTable.insertRow(typeData);
+
+  response.redirect('/types');
+};
+
+const typeCreation = [typeCreationSchema, addNewType];
+
+export { getTypesPage, getParticularTypePage, getNewTypePage, typeCreation };

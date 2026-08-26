@@ -1,5 +1,10 @@
+<h1>All Types</h1>
+<a href="/types/new">Add a type</a>
+
+<% if (allTypes.length > 0) { %>
 <ol>
   <% for (const {type_name} of allTypes) { %>
   <li><a href="/types/<%= type_name %>"><%= type_name %></a></li>
   <% } %>
 </ol>
+<% } %>
