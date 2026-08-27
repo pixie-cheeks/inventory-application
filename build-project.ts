@@ -3,6 +3,9 @@
 /* eslint-disable import-x/no-named-as-default-member */
 import shell from 'shelljs';
 
+// Clean the build folder
+shell.rm('-rf', ['dist']);
+
 // Build js files from ts
 shell.exec('tsc -p configs/tsconfig.build.json');
 
