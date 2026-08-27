@@ -7,7 +7,7 @@ import shell from 'shelljs';
 shell.exec('tsc -p configs/tsconfig.build.json');
 
 // Build styles with postcss
-shell.exec('postcss src/styles --dir src/public/styles');
+shell.exec('postcss src/styles --dir src/public/styles --map');
 
 // Copy all the view templates and assets in the public folder
 shell.cp('-R', ['src/views', 'src/public'], 'dist/');

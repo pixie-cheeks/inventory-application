@@ -13,7 +13,7 @@
     "preview": "node dist/app.js",
     "start": "tsx src/app.ts",
     "dev": "tsx --watch .",
-    "watch:css": "postcss ./src/styles --dir ./src/public/styles --watch",
+    "watch:css": "postcss ./src/styles --dir ./src/public/styles --map --watch",
     "populateDB": "tsx src/db/populateDatabase.ts",
     "lint:css": "stylelint .",
     "lint": "eslint",
@@ -81,7 +81,7 @@
     ],
     "ignoreFiles": [
       "**/*",
-      "!src/**/*.css"
+      "!src/styles/**/*.css"
     ]
   },
   "cspell": {

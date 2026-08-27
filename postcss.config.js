@@ -1,8 +1,21 @@
 import postcssPresetEnv from 'postcss-preset-env';
 import postcssNested from 'postcss-nested';
 
-const postcssConfig = {
-  plugins: [postcssNested, postcssPresetEnv()],
-};
-
-export default postcssConfig;
+/**
+ * @param {{
+ * env: 'production' | 'development',
+ * options: import('postcss').ProcessOptions,
+ * file: {
+ * dirname: string,
+ * basename: string,
+ * extname: string
+ * }
+ * }} context
+ * @returns
+ */
+export default function postcssConfigFunction(context) {
+  return {
+    map: context.options.map,
+    plugins: [postcssNested, postcssPresetEnv()],
+  };
+}
