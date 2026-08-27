@@ -10,7 +10,9 @@ shell.rm('-rf', ['dist']);
 shell.exec('tsc -p configs/tsconfig.build.json');
 
 // Build styles with postcss
-shell.exec('postcss src/styles --dir src/public/styles --map');
+shell.exec(
+  'postcss src/styles/style.css --dir src/public/styles --map --env production',
+);
 
 // Copy all the view templates and assets in the public folder
 shell.cp('-R', ['src/views', 'src/public'], 'dist/');

@@ -1,3 +1,5 @@
+@import url('./globals/_variables.css');
+
 .root__body {
   margin: 0;
 }

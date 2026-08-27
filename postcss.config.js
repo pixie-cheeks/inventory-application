@@ -1,6 +1,9 @@
 import postcssPresetEnv from 'postcss-preset-env';
 import postcssNested from 'postcss-nested';
+import postcssImport from 'postcss-import';
+import cssnano from 'cssnano';
 
+const plugins = [postcssImport, postcssNested, postcssPresetEnv()];
 /**
  * @param {{
  * env: 'production' | 'development',
@@ -16,6 +19,9 @@ import postcssNested from 'postcss-nested';
 export default function postcssConfigFunction(context) {
   return {
     map: context.options.map,
-    plugins: [postcssNested, postcssPresetEnv()],
+    plugins:
+      context.env === 'production'
+        ? [...plugins, cssnano({ preset: 'default' })]
+        : plugins,
   };
 }
