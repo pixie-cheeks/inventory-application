@@ -166,7 +166,10 @@ const addPokemon: RequestHandler = async (request, response) => {
     return;
   }
 
-  const pokemonData = matchedData<InsertionPokemon>(request);
+  const { admin_password: _admin_password, ...pokemonData } = matchedData<
+    InsertionPokemon & { admin_password: string }
+  >(request);
+
   await pokemonsTable.insertRow(pokemonData);
 
   response.redirect('/pokemon');

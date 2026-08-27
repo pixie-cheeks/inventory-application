@@ -4,6 +4,12 @@
 <form action="/types/<%- type_name %>/edit" method="post" class="form page__form">
   <h1>Edit a type</h1>
 
+
+  <div class="form__field">
+    <label for="admin-password">Enter Admin Password</label>
+    <input type="password" id="admin-password" name="admin_password" required>
+  </div>
+
   <div class="form__field">
     <label for="name">Name</label>
     <input type="text" id="name" name="type_name" required value="<%- type_name %>">

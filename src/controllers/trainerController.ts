@@ -145,8 +145,12 @@ const editTrainer: RequestHandler = async (request, response) => {
 
   const errors = validationResult(request);
 
-  const { owned_pokemon, ...trainerData } = matchedData<
-    InsertionTrainer & { owned_pokemon?: number[] }
+  const {
+    admin_password: _admin_password,
+    owned_pokemon,
+    ...trainerData
+  } = matchedData<
+    InsertionTrainer & { admin_password: string; owned_pokemon?: number[] }
   >(request);
 
   if (!errors.isEmpty()) {

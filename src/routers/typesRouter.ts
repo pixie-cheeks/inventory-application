@@ -17,7 +17,7 @@ const createTypesRouter = (): TypeRouter => {
   typesRouter.post('/new', ...typeCreation);
   typesRouter.get('/new', getNewTypePage);
   typesRouter.delete('/:typeName', adminValidation, deleteType);
-  typesRouter.post('/:typeName/edit', ...typeUpdate);
+  typesRouter.post('/:typeName/edit', adminValidation, ...typeUpdate);
   typesRouter.get('/:typeName/edit', getEditTypePage);
   typesRouter.get('/:typeName', getParticularTypePage);
   typesRouter.get('/', getTypesPage);

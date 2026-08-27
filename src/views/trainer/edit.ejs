@@ -6,6 +6,12 @@
   <h1>Edit Trainer Details</h1>
 
   <input type="hidden" name="id" value="<%- trainerId %>">
+
+  <div class="form__field">
+    <label for="admin-password">Enter Admin Password</label>
+    <input type="password" id="admin-password" name="admin_password" required>
+  </div>
+
   <div class="form__field">
     <label for="name">Name</label>
     <input type="text" id="name" name="trainer_name" required value="<%- trainer_name %>">

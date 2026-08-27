@@ -17,7 +17,7 @@ const createTrainerRouter = (): TypeRouter => {
   trainerRouter.post('/new', ...trainerCreate);
   trainerRouter.get('/new', getNewTrainerPage);
   trainerRouter.delete('/:trainerId', adminValidation, deleteTrainer);
-  trainerRouter.post('/:trainerId/edit', ...trainerUpdate);
+  trainerRouter.post('/:trainerId/edit', adminValidation, ...trainerUpdate);
   trainerRouter.get('/:trainerId/edit', getEditTrainerPage);
   trainerRouter.get('/:trainerId', getTrainerPage);
   trainerRouter.get('/', getAllTrainers);

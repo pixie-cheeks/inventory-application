@@ -115,7 +115,10 @@ const editType: RequestHandler = async (request, response) => {
     });
     return;
   }
-  const newTypeData = matchedData<Omit<PokemonType, 'id'>>(request);
+
+  const { admin_password: _admin_password, ...newTypeData } = matchedData<
+    Omit<PokemonType, 'id'> & { admin_password: string }
+  >(request);
 
   await typesTable.editRowById(typeData.id, newTypeData);
 

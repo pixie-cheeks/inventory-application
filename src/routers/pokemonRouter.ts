@@ -17,7 +17,7 @@ const createPokemonRouter = (): TypeRouter => {
   pokemonRouter.post('/new', ...pokemonCreation);
   pokemonRouter.get('/new', getNewPokemonPage);
   pokemonRouter.delete('/:id', adminValidation, deletePokemon);
-  pokemonRouter.post('/:id/edit', ...pokemonUpdate);
+  pokemonRouter.post('/:id/edit', adminValidation, ...pokemonUpdate);
   pokemonRouter.get('/:id/edit', getEditPokemonPage);
   pokemonRouter.get('/:id', getPokemon);
   pokemonRouter.get('/', getAllPokemon);
