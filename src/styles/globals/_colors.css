@@ -1,0 +1,12 @@
+:root {
+  /* Greys */
+  --grey-100: hsl(223deg 14% 90%);
+  --grey-200: hsl(210deg 8% 80%);
+  --grey-300: hsl(220deg 7% 75%);
+  --grey-400: hsl(202deg 5% 67%);
+  --grey-500: hsl(204deg 3% 65%);
+  --grey-600: hsl(223deg 6% 47%);
+  --grey-700: hsl(193deg 6% 28%);
+  --grey-800: hsl(200deg 15% 16%);
+  --grey-900: hsl(225deg 11% 7%);
+}
