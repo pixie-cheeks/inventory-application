@@ -32,9 +32,10 @@ export default defineConfig([
     },
   },
   {
-    files: ['{eslint,vite}.config.{js,ts}'],
+    files: ['{eslint,vite,postcss}.config.{js,ts}'],
     rules: {
       'import-x/no-default-export': 'off',
+      'import-x/no-extraneous-dependencies': 'off',
     },
   },
   {
@@ -47,7 +48,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['src/tools/**/*'],
+    files: ['build-project.ts'],
     rules: {
       'import-x/no-extraneous-dependencies': 'off',
     },
