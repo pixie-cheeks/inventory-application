@@ -1,22 +1,26 @@
-<header>
-  <nav>
-    <div class="page__container">
-      <div class="nav__container">
-        <ul class="nav__list">
-          <li class="nav__list-item">
-            <a href="/" class="nav__link link">Home</a>
-          </li>
-          <li class="nav__list-item">
-            <a href="/types" class="nav__link link">Types</a>
-          </li>
-          <li class="nav__list-item">
-            <a href="/pokemon">Pokemon</a>
-          </li>
-          <li class="nav__list-item">
-            <a href="/trainers">Trainers</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<header class="header">
+  <div class="page__container header__container">
+    <a href="/" aria-label="Home page" class="header__logo-container header__link link">
+      <img src="/images/pokeball.webp" alt="Pok&eacute;Inventory page logo" class="header__logo">
+      <span><span class="header__primary-text">Pok&eacute;</span><span class="header__secondary-text">Inventory</span></span>
+    </a>
+    <button type="button" class="hamburger-menu" aria-label="Toggle navigation menu">
+      <span aria-hidden="true" class="hamburger-menu__stripe"></span>
+      <span aria-hidden="true" class="hamburger-menu__stripe"></span>
+      <span aria-hidden="true" class="hamburger-menu__stripe"></span>
+    </button>
+    <nav class="header__nav">
+      <ul class="header__list">
+        <li>
+          <a href="/types" class="header__link link">Types</a>
+        </li>
+        <li>
+          <a href="/pokemon" class="header__link link">Pok&eacute;mon</a>
+        </li>
+        <li>
+          <a href="/trainers" class="header__link link">Trainers</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>

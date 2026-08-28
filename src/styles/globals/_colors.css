@@ -9,4 +9,12 @@
   --grey-700: hsl(193deg 6% 28%);
   --grey-800: hsl(200deg 15% 16%);
   --grey-900: hsl(225deg 11% 7%);
+
+  /* Component Colors */
+  --page-bg: var(--grey-100);
+  --page-fg: var(--grey-800);
+  --header-bg: var(--grey-800);
+  --header-fg: var(--grey-200);
+  --header-fg-1: var(--grey-400);
+  --hamburger-stripe-color: var(--grey-100);
 }
