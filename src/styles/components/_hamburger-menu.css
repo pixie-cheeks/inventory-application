@@ -10,7 +10,7 @@
     display: block;
     position: absolute;
     left: 0;
-    transition: 0.2s ease-in-out;
+    transition: var(--time-1) ease-in-out;
     transition-property: top, bottom, transform, background-color;
     border-radius: var(--space-1);
     background-color: var(--hamburger-stripe-color);

@@ -30,17 +30,28 @@
   }
 
   &__nav {
-    /* display: none; */
     position: absolute;
     top: 100%;
     right: 0;
     left: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: ease-in-out var(--time-1);
+    transition-property: transform, visibility;
+    visibility: hidden;
     background-color: var(--header-bg);
     padding: var(--space-3);
     text-align: center;
 
+    &.active {
+      transform: scaleY(1);
+      visibility: visible;
+    }
+
     @media (--for-tablet-portrait-up) {
       position: static;
+      transform: none;
+      visibility: visible;
     }
   }
 

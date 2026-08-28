@@ -4,12 +4,12 @@
       <img src="/images/pokeball.webp" alt="Pok&eacute;Inventory page logo" class="header__logo">
       <span><span class="header__primary-text">Pok&eacute;</span><span class="header__secondary-text">Inventory</span></span>
     </a>
-    <button type="button" class="hamburger-menu" aria-label="Toggle navigation menu">
+    <button type="button" class="hamburger-menu" id="js-hamburger-menu" aria-label="Toggle navigation menu" aria-expanded="false">
       <span aria-hidden="true" class="hamburger-menu__stripe"></span>
       <span aria-hidden="true" class="hamburger-menu__stripe"></span>
       <span aria-hidden="true" class="hamburger-menu__stripe"></span>
     </button>
-    <nav class="header__nav">
+    <nav class="header__nav" id="js-nav-list">
       <ul class="header__list">
         <li>
           <a href="/types" class="header__link link">Types</a>
@@ -24,3 +24,18 @@
     </nav>
   </div>
 </header>
+<script type="module">
+  const hamburgerMenuDom = document.querySelector('#js-hamburger-menu');
+  const navListDom = document.querySelector('#js-nav-list');
+  const activeClass = 'active';
+
+  hamburgerMenuDom.addEventListener('click', () => {
+    hamburgerMenuDom.ariaExpanded = hamburgerMenuDom.classList.toggle(activeClass);
+    navListDom.classList.toggle(activeClass);
+  });
+
+  console.log({
+    hamburgerMenuDom,
+    navListDom
+  });
+</script>
