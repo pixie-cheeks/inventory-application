@@ -1,4 +1,6 @@
 .page {
+  display: flex;
+  flex-direction: column;
   background-color: var(--page-bg);
   min-height: 100dvh;
   color: var(--page-fg);
@@ -8,5 +10,9 @@
     margin: 0 auto;
     padding: var(--space-3);
     max-width: var(--space-17);
+  }
+
+  &__main {
+    flex: 1;
   }
 }

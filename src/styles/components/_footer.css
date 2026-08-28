@@ -1,0 +1,26 @@
+.footer {
+  &__container {
+    display: flex;
+    justify-content: center;
+    background-color: var(--header-bg);
+    color: var(--header-fg);
+  }
+
+  &__link {
+    display: flex;
+    gap: var(--space-1);
+    align-items: center;
+    justify-content: center;
+    transition: var(--time-1) ease-in-out color;
+
+    &:hover,
+    &:focus {
+      color: var(--header-fg-1);
+    }
+  }
+
+  &__icon {
+    fill: currentcolor;
+    width: var(--space-5);
+  }
+}

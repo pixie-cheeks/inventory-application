@@ -78,14 +78,13 @@
     }
 
     @media (--for-tablet-portrait-up) {
-      transition-property: color, text-decoration;
+      transition-property: color;
       padding: 0;
       color: var(--header-fg-1);
 
       &:hover,
       &:focus {
         background-color: inherit;
-        text-decoration: underline;
         color: inherit;
       }
     }
