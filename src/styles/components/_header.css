@@ -63,4 +63,31 @@
       gap: var(--space-6);
     }
   }
+
+  &__nav-link {
+    display: block;
+    transition: var(--time-1) ease-in-out;
+    transition-property: background-color, color;
+    border-radius: var(--space-1);
+    padding: var(--space-3);
+
+    &:hover,
+    &:focus {
+      background-color: var(--header-fg-1);
+      color: var(--header-bg);
+    }
+
+    @media (--for-tablet-portrait-up) {
+      transition-property: color, text-decoration;
+      padding: 0;
+      color: var(--header-fg-1);
+
+      &:hover,
+      &:focus {
+        background-color: inherit;
+        text-decoration: underline;
+        color: inherit;
+      }
+    }
+  }
 }
