@@ -1,0 +1,20 @@
+.main {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding-block: var(--space-6);
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  &__heading {
+    line-height: var(--line-height-1);
+    letter-spacing: var(--letter-spacing-1);
+    font-size: var(--font-size-6);
+  }
+}

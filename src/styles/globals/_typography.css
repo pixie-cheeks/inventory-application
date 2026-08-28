@@ -8,7 +8,16 @@
   --font-size-6: 1.5rem;
   --font-size-7: 2rem;
   --font-size-8: 3rem;
+
+  /* Font weights */
   --font-weight-bold: 600;
+
+  /* Line heights */
+  --line-height-1: 1;
+
+  /* Letter spacings */
+  --letter-spacing-1: -1px;
+  --letter-spacing-2: 0;
 
   font-family: Nunito, sans-serif;
 }

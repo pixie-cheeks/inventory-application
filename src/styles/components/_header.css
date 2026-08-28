@@ -13,6 +13,7 @@
     display: flex;
     gap: var(--space-3);
     align-items: center;
+    letter-spacing: var(--letter-spacing-1);
     font-size: var(--font-size-6);
   }
 
@@ -25,7 +26,6 @@
   }
 
   &__secondary-text {
-    letter-spacing: -1px;
     color: var(--header-fg-1);
   }
 

@@ -1,9 +1,10 @@
 .footer {
+  background-color: var(--header-bg);
+  color: var(--header-fg);
+
   &__container {
     display: flex;
     justify-content: center;
-    background-color: var(--header-bg);
-    color: var(--header-fg);
   }
 
   &__link {

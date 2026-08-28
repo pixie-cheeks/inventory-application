@@ -24,18 +24,3 @@
     </nav>
   </div>
 </header>
-<script type="module">
-  const hamburgerMenuDom = document.querySelector('#js-hamburger-menu');
-  const navListDom = document.querySelector('#js-nav-list');
-  const activeClass = 'active';
-
-  hamburgerMenuDom.addEventListener('click', () => {
-    hamburgerMenuDom.ariaExpanded = hamburgerMenuDom.classList.toggle(activeClass);
-    navListDom.classList.toggle(activeClass);
-  });
-
-  console.log({
-    hamburgerMenuDom,
-    navListDom
-  });
-</script>
