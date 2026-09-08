@@ -1,0 +1,19 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-items: center;
+  border-radius: var(--border-radius);
+  background-color: var(--card-bg);
+  padding: var(--space-5);
+  color: var(--card-fg);
+
+  &__media {
+    border-radius: var(--border-radius);
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+  }
+}

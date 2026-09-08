@@ -17,4 +17,6 @@
   --header-fg: var(--grey-200);
   --header-fg-1: var(--grey-400);
   --hamburger-stripe-color: var(--grey-100);
+  --card-bg: var(--grey-700);
+  --card-fg: var(--grey-300);
 }
