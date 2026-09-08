@@ -107,7 +107,8 @@
       "pgdatabase",
       "pghost",
       "pguser",
-      "unrs"
+      "unrs",
+      "Vecteezy"
     ],
     "ignorePaths": [
       ".git",

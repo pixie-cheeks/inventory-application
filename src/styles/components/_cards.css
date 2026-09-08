@@ -1,6 +1,7 @@
 .cards {
   display: grid;
   row-gap: var(--space-5);
+  list-style: none;
 
   &__heading {
     line-height: var(--line-height-1);

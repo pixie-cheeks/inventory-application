@@ -10,7 +10,8 @@
   text-decoration: none;
   color: var(--card-fg);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: var(--card-hover-bg);
     color: var(--card-hover-fg);
   }
@@ -18,7 +19,9 @@
   &__media {
     border-radius: var(--border-radius);
     filter: grayscale(100%);
-    max-width: var(--space-10);
+    aspect-ratio: 1;
+    width: var(--space-10);
+    object-fit: cover;
   }
 
   &__title {
