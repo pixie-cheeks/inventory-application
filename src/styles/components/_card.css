@@ -1,19 +1,29 @@
 .card {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-6);
   align-items: center;
+  transition: var(--time-1) ease-in-out;
+  transition-property: color, background-color;
   border-radius: var(--border-radius);
   background-color: var(--card-bg);
   padding: var(--space-5);
+  text-decoration: none;
   color: var(--card-fg);
+
+  &:hover {
+    background-color: var(--card-hover-bg);
+    color: var(--card-hover-fg);
+  }
 
   &__media {
     border-radius: var(--border-radius);
+    filter: grayscale(100%);
+    max-width: var(--space-10);
   }
 
-  &__link {
-    text-decoration: none;
-    color: inherit;
+  &__title {
+    letter-spacing: var(--letter-spacing-1);
+    font-size: var(--font-size-6);
+    font-weight: normal;
   }
 }
