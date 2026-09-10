@@ -1,4 +1,5 @@
 .footer {
+  box-shadow: var(--up-box-shadow-level-1);
   background-color: var(--header-bg);
   color: var(--header-fg);
 

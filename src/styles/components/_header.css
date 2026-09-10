@@ -1,5 +1,6 @@
 .header {
   position: relative;
+  box-shadow: var(--box-shadow-level-1);
   background-color: var(--header-bg);
   color: var(--header-fg);
 
