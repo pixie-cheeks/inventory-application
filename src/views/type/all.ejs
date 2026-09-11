@@ -1,10 +1,17 @@
-<h1>All Types</h1>
-<a href="/types/new">Add a type</a>
+<div class="main__header">
+  <h1 class="main__heading">All Types</h1>
+  <a href="/types/new" class="main__btn btn">Add a Type</a>
+</div>
 
-<% if (allTypes.length > 0) { %>
-<ol>
+<% if (allTypes.length === 0) { %>
+<div class="main__content">
+  <img src="/images/empty-state.png" alt="" class="main__media">
+  <p class="main__subtitle">Looks like there has been no type added yet. Go ahead and add one!</p>
+</div>
+<% } else { %>
+<ul>
   <% for (const {type_name} of allTypes) { %>
   <li><a href="/types/<%= type_name %>"><%= type_name %></a></li>
   <% } %>
-</ol>
+</ul>
 <% } %>

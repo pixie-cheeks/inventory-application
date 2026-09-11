@@ -22,7 +22,27 @@
     font-size: var(--font-size-6);
 
     @media (--for-tablet-landscape-up) {
-      font-size: var(--font-size-8);
+      font-size: var(--font-size-7);
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  &__btn {
+    transition: var(--time-1) ease-in-out;
+    transition-property: background-color;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-btn-bg);
+    padding: var(--space-3);
+    color: var(--primary-btn-fg);
+
+    &:hover,
+    &:focus {
+      background-color: var(--primary-btn-hover-bg);
     }
   }
 }

@@ -32,4 +32,7 @@
   --card-fg: var(--grey-100);
   --card-hover-bg: var(--red-700);
   --card-hover-fg: var(--grey-100);
+  --primary-btn-bg: var(--red-600);
+  --primary-btn-fg: var(--grey-100);
+  --primary-btn-hover-bg: var(--red-700);
 }
