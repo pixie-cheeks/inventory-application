@@ -1,4 +1,5 @@
 .btn {
+  display: block;
   text-decoration: none;
   color: inherit;
   font-size: var(--font-size-4);

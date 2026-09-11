@@ -36,6 +36,7 @@
     transition: var(--time-1) ease-in-out;
     transition-property: background-color;
     border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-level-1);
     background-color: var(--primary-btn-bg);
     padding: var(--space-3);
     color: var(--primary-btn-fg);
@@ -44,5 +45,21 @@
     &:focus {
       background-color: var(--primary-btn-hover-bg);
     }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  &__subtitle {
+    margin-top: var(--space-4);
+    text-align: center;
+  }
+
+  &__media {
+    max-width: var(--space-10);
   }
 }
