@@ -32,21 +32,6 @@
     justify-content: space-between;
   }
 
-  &__btn {
-    transition: var(--time-1) ease-in-out;
-    transition-property: background-color;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow-level-1);
-    background-color: var(--primary-btn-bg);
-    padding: var(--space-3);
-    color: var(--primary-btn-fg);
-
-    &:hover,
-    &:focus {
-      background-color: var(--primary-btn-hover-bg);
-    }
-  }
-
   &__content {
     display: flex;
     flex-direction: column;
@@ -59,6 +44,7 @@
   }
 
   &__media {
-    max-width: var(--space-10);
+    width: auto;
+    max-height: var(--space-10);
   }
 }

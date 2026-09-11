@@ -1,18 +1,17 @@
-<%- include('../partials/error') %>
+<form action="/types/new" method="post" class="form">
+  <%- include('../partials/error') %>
+  <div class="form__container">
+    <h1 class="form__title">Create a New Type</h1>
 
-<form action="/types/new" method="post" class="form page__form">
-  <h1>Create a new type</h1>
-
-  <div class="form__field">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="type_name" required>
+    <div class="form__field">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="type_name" class="form__input" required placeholder="Fire">
+    </div>
+    <div class="form__field">
+      <label for="image">Type Image URL</label>
+      <input type="url" id="image" name="image_src" class="form__input" placeholder="https://link-to-your-type/icon.jpg">
+    </div>
+    <button type="submit" class="btn form__btn">Add Type</button>
   </div>
-
-  <div class="form__field">
-    <label for="image">Type Image URL</label>
-    <input type="url" id="image" name="image_src">
-  </div>
-
-  <div class="form__field"><button type="submit">Add Type</button></div>
 
 </form>

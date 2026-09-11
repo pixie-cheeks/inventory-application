@@ -35,4 +35,6 @@
   --primary-btn-bg: var(--red-600);
   --primary-btn-fg: var(--grey-100);
   --primary-btn-hover-bg: var(--red-700);
+  --form-bg: var(--grey-200);
+  --form-focus-color: var(--red-400);
 }
