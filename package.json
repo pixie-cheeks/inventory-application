@@ -100,6 +100,7 @@
       "besthyhy",
       "Bulbasaur",
       "closedby",
+      "ejslint",
       "esbuild",
       "Golubev",
       "ilike",
@@ -122,6 +123,9 @@
     "*": [
       "cspell --no-must-find-files",
       "prettier --write --ignore-unknown"
+    ],
+    "*.ejs": [
+      "ejslint"
     ],
     "*.css": [
       "stylelint"

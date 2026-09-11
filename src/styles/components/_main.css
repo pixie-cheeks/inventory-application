@@ -54,9 +54,8 @@
     align-items: center;
   }
 
-  &__subtitle {
-    margin-top: var(--space-4);
-    text-align: center;
+  &__empty-text {
+    padding-top: var(--space-5);
   }
 
   &__media {

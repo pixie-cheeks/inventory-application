@@ -1,8 +1,10 @@
-<h1>All pokemon</h1>
-
-<% if (locals.haveTypes) { %>
-<a href="/pokemon/new">Add a New Pokemon</a>
-<% } %>
+<div class="main__header">
+  <h1 class="main__heading">All Pok&eacute;mon</h1>
+  <% if (locals.haveTypes) { %>
+  <a href="/pokemon/new" class="main__btn btn">Add &plus;</a>
+  <% } %>
+</div>
+<% if (allPokemon.length > 0) { %>
 
 <ol>
   <% for (const {id, pokemon_name, pokemon_description, type_one, type_two} of allPokemon) { %>
@@ -21,3 +23,21 @@
   </li>
   <% } %>
 </ol>
+
+<% } else { %>
+<div class="main__content">
+  <img src="/images/empty-state.webp" alt="" class="main__media">
+  <div class="main__empty-text">
+    <p class="main__subtitle">Looks like there has been no pok&eacute;mon added yet.</p>
+    <% if (locals.haveTypes) { %>
+    <p class="main__subtitle">Go ahead and add one!</p>
+  </div>
+  <a href="/trainers/new" class="main__btn btn">Add a New Pok&eacute;mon</a>
+  <% } else { %>
+  <p class="main__subtitle">A pok&eacute;mon can't exist without a type, so you will need to create a type first.</p>
+</div>
+<a href="/types/new" class="main__btn btn">Add a New Type</a>
+<% } %>
+</div>
+
+<% } %>

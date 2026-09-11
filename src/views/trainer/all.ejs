@@ -1,5 +1,7 @@
-<h1>List of all trainers</h1>
-<a href="/trainers/new">Add a trainer</a>
+<div class="main__header">
+  <h1 class="main__heading">All Trainers</h1>
+  <a href="/types/new" class="main__btn btn">Add &plus;</a>
+</div>
 <% if (allTrainers.length > 0) { %>
 <ol>
   <% for (const {id, trainer_name, trainer_description} of allTrainers) { %>
@@ -9,4 +11,13 @@
   </li>
   <% } %>
 </ol>
+<% } else { %>
+<div class="main__content">
+  <img src="/images/empty-state.webp" alt="" class="main__media">
+  <div class="main__empty-text">
+    <p class="main__subtitle">Looks like there has been no trainer added yet. Go ahead and add one!</p>
+  </div>
+  <a href="/trainers/new" class="main__btn btn">Add a New Trainer</a>
+</div>
+
 <% } %>
