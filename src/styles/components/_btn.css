@@ -9,6 +9,7 @@
   padding: var(--space-3);
   text-decoration: none;
   color: var(--primary-btn-fg);
+  font-family: inherit;
   font-size: var(--font-size-4);
 
   &:hover,

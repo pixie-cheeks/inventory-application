@@ -1,14 +1,15 @@
 <form action="/pokemon/new" method="post" class="form page__form">
   <%- include('../partials/error') %>
+
   <div class="form__container">
-    <h1 class="form__title">Create a New Pokemon</h1>
+    <h1 class="form__title">Create a New Pok&eacute;mon</h1>
     <div class="form__field">
       <label for="name">Name</label>
-      <input type="text" id="name" name="pokemon_name" required class="form__input">
+      <input type="text" id="name" name="pokemon_name" required class="form__input" placeholder="Pikachu">
     </div>
     <div class="form__field">
       <label for="description">Description</label>
-      <textarea name="pokemon_description" id="description" required class="form__input form__input--textarea"></textarea>
+      <textarea name="pokemon_description" id="description" required class="form__input form__input--textarea" placeholder="An electric mouse pok&eacute;mon"></textarea>
     </div>
     <div class="form__field">
       <label for="type-one">Type One</label>
@@ -23,10 +24,10 @@
       </select>
     </div>
     <div class="form__field">
-      <label for="image">Pokemon Image URL</label>
-      <input type="url" id="image" name="image_src" class="form__input">
+      <label for="image">Pok&eacute;mon Image URL</label>
+      <input type="url" id="image" name="image_src" class="form__input" placeholder="https://somepage.com/some-image.jpg">
     </div>
-    <button type="submit" class="form__btn btn">Add Pokemon</button>
+    <button type="submit" class="form__btn btn">Add Pok&eacute;mon</button>
   </div>
 
 </form>
