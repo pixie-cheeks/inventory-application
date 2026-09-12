@@ -1,0 +1,5 @@
+.category-card {
+  &__media {
+    width: var(--space-9);
+  }
+}

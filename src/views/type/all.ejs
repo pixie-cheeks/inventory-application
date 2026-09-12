@@ -12,9 +12,14 @@
   <a href="/types/new" class="main__btn btn">Add a New Type</a>
 </div>
 <% } else { %>
-<ul>
-  <% for (const {type_name} of allTypes) { %>
-  <li><a href="/types/<%= type_name %>"><%= type_name %></a></li>
+<ul class="cards">
+  <% for (const {image_src, type_name} of allTypes) { %>
+  <li>
+    <a href="/types/<%= type_name %>" class="card category-card">
+      <img src="<%= image_src %>" alt="" class="card__media category-card__media">
+      <p class="card__title"><%= type_name %></p>
+    </a>
+  </li>
   <% } %>
 </ul>
 <% } %>
