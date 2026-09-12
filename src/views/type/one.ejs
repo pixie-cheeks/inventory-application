@@ -30,19 +30,14 @@
 
 <% } else { %>
 <h2>All pokemon of type <%- typeName %></h2>
-<ol>
-  <% for (const {id, pokemon_name, type_one, type_two} of allPokemonOfType) { %>
+<ul class="cards">
+  <% for (const {id, pokemon_name, type_one, type_two, image_src} of allPokemonOfType) { %>
   <li>
-    <p><a href="/pokemon/<%- id %>"><%- pokemon_name %></a></p>
-    <dl>
-      <dt>Type One</dt>
-      <dd><%- type_one %></dd>
-      <% if (locals.type_two) { %>
-      <dt>Type Two</dt>
-      <dd><%- type_two %></dd>
-      <% } %>
-    </dl>
+    <a href="/pokemon/<%- id %>" class="card">
+      <img src="<%= image_src || '/images/no-image-icon.png' %>" alt="Appearance of <%= pokemon_name %>" class="card__media category-card__media">
+      <p class="card__title"><%- pokemon_name %></p>
+    </a>
   </li>
   <% } %>
-</ol>
+</ul>
 <% } %>
