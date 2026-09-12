@@ -20,7 +20,14 @@
   </div>
 </div>
 <% if (allPokemonOfType.length === 0) { %>
-<p>Oops! No pokemon of type <%- typeName %></p>
+<div class="main__content">
+  <img src="/images/empty-state.webp" alt="" class="main__media">
+  <div class="main__empty-text">
+    <p class="main__subtitle">Oops! No pokemon of type <%- typeName %>. Why not add one?</p>
+  </div>
+  <a href="/pokemon/new" class="main__btn btn">Add a New Pokemon</a>
+</div>
+
 <% } else { %>
 <h2>All pokemon of type <%- typeName %></h2>
 <ol>

@@ -1,25 +1,27 @@
-<%- include('../partials/error') %>
 <% const {  type_name, image_src } = typeData %>
 
 <form action="/types/<%- type_name %>/edit" method="post" class="form page__form">
-  <h1>Edit a type</h1>
+  <%- include('../partials/error') %>
 
+  <div class="form__container">
+    <h1 class="form__title">Edit Type</h1>
 
-  <div class="form__field">
-    <label for="admin-password">Enter Admin Password</label>
-    <input type="password" id="admin-password" name="admin_password" required>
+    <div class="form__field">
+      <label for="admin-password">Enter Admin Password</label>
+      <input type="password" id="admin-password" name="admin_password" required class="form__input">
+    </div>
+
+    <div class="form__field">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="type_name" required value="<%- type_name %>" class="form__input">
+    </div>
+
+    <div class="form__field">
+      <label for="image">Type Image URL</label>
+      <input type="url" id="image" name="image_src" <%- image_src && `value="${image_src}"` %> class="form__input">
+    </div>
+
+    <button type="submit" class="btn form__btn">Save Changes</button>
   </div>
-
-  <div class="form__field">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="type_name" required value="<%- type_name %>">
-  </div>
-
-  <div class="form__field">
-    <label for="image">Type Image URL</label>
-    <input type="url" id="image" name="image_src" <%- image_src && `value="${image_src}"` %>>
-  </div>
-
-  <div class="form__field"><button type="submit">Save Changes</button></div>
 
 </form>
