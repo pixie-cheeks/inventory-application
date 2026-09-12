@@ -1,35 +1,36 @@
-<%- include('../partials/error') %>
+<form action="/trainers/new" method="post" class="form">
+  <%- include('../partials/error') %>
+  <div class="form__container">
+    <h1 class="form__title">Create a new trainer</h1>
 
-<form action="/trainers/new" method="post" class="form page__form">
-  <h1>Create a new trainer</h1>
+    <div class="form__field">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="trainer_name" class="form__input" required>
+    </div>
 
-  <div class="form__field">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="trainer_name" required>
+    <div class="form__field">
+      <label for="description">Description</label>
+      <textarea name="trainer_description" id="description" class="form__input form__input--textarea" required></textarea>
+    </div>
+
+    <div class="form__field">
+      <label for="image">Trainer Image URL</label>
+      <input type="url" id="image" name="image_src" class="form__input">
+    </div>
+
+    <% if (locals.allPokemon?.length > 0) { %>
+    <div class="form__field">
+      <label for="pokemon">Owned Pokemon</label>
+      <select name="owned_pokemon" id="pokemon" multiple class="form__input">
+        <option value="">Select</option>
+        <% allPokemon.forEach(({id, pokemon_name}) => { %>
+        <option value="<%- id %>"><%- pokemon_name %></option>
+        <% }) %>
+      </select>
+    </div>
+    <% } %>
+
+    <button type="submit" class="btn form__btn">Add Trainer</button>
   </div>
-
-  <div class="form__field">
-    <label for="description">Description</label>
-    <textarea class="textarea" name="trainer_description" id="description" required></textarea>
-  </div>
-
-  <div class="form__field">
-    <label for="image">Trainer Image URL</label>
-    <input type="url" id="image" name="image_src">
-  </div>
-
-  <% if (locals.allPokemon?.length > 0) { %>
-  <div class="form__field">
-    <label for="pokemon">Owned Pokemon</label>
-    <select name="owned_pokemon" id="pokemon" multiple>
-      <option value="">Select</option>
-      <% allPokemon.forEach(({id, pokemon_name}) => { %>
-      <option value="<%- id %>"><%- pokemon_name %></option>
-      <% }) %>
-    </select>
-  </div>
-  <% } %>
-
-  <div class="form__field"><button type="submit">Add Trainer</button></div>
 
 </form>

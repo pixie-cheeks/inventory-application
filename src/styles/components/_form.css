@@ -42,6 +42,12 @@
     }
   }
 
+  &__input--textarea {
+    padding: var(--space-1);
+    min-height: var(--space-9);
+    resize: none;
+  }
+
   &__btn {
     margin: 0 auto;
     padding: var(--space-3);
