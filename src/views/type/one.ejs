@@ -1,8 +1,10 @@
+<% const {type_name, image_src} = typeData %>
+
 <div class="details">
   <div class="details__header">
-    <h1 class="details__heading"><%= typeName %> (type)</h1>
+    <h1 class="details__heading"><%= type_name %> (type)</h1>
     <div class="details__actions">
-      <a href="/types/<%- typeName %>/edit" class="btn details__btn" title="Edit"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <a href="/types/<%- type_name %>/edit" class="btn details__btn" title="Edit"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
           <path d="m15 5 4 4" />
         </svg></a>
@@ -11,33 +13,38 @@
       {
         deleteData: {
           categoryName: 'Type',
-          itemName: typeName,
-          formAction: `/types/${typeName}`
+          itemName: type_name,
+          formAction: `/types/${type_name}`
         },
       }
     ) %>
     </div>
   </div>
 </div>
+
+<img class="details__media details__media--type" src="<%- image_src || '/images/no-image-icon.png' %> " alt="Appearance of <%- type_name %>">
+
 <% if (allPokemonOfType.length === 0) { %>
 <div class="main__content">
   <img src="/images/empty-state.webp" alt="" class="main__media">
   <div class="main__empty-text">
-    <p class="main__subtitle">Oops! No pokemon of type <%- typeName %>. Why not add one?</p>
+    <p class="main__subtitle">Oops! No pokemon of type <%- type_name %>. Why not add one?</p>
   </div>
   <a href="/pokemon/new" class="main__btn btn">Add a New Pokemon</a>
 </div>
 
 <% } else { %>
-<h2>All pokemon of type <%- typeName %></h2>
-<ul class="cards">
-  <% for (const {id, pokemon_name, type_one, type_two, image_src} of allPokemonOfType) { %>
-  <li>
-    <a href="/pokemon/<%- id %>" class="card">
-      <img src="<%= image_src || '/images/no-image-icon.png' %>" alt="Appearance of <%= pokemon_name %>" class="card__media category-card__media">
-      <p class="card__title"><%- pokemon_name %></p>
-    </a>
-  </li>
-  <% } %>
-</ul>
+<div class="details__block">
+  <h2 class="details__title">All pokemon of type <%- type_name %></h2>
+  <ul class="cards">
+    <% for (const {id, pokemon_name, type_one, type_two, image_src} of allPokemonOfType) { %>
+    <li>
+      <a href="/pokemon/<%- id %>" class="card">
+        <img src="<%= image_src || '/images/no-image-icon.png' %>" alt="Appearance of <%= pokemon_name %>" class="card__media category-card__media">
+        <p class="card__title"><%- pokemon_name %></p>
+      </a>
+    </li>
+    <% } %>
+  </ul>
+</div>
 <% } %>

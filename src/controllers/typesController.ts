@@ -19,8 +19,8 @@ const getParticularTypePage: RequestHandler<{ typeName: string }> = async (
   next,
 ) => {
   const givenTypeName = request.params.typeName;
-  const typeNameInTable = await typesTable.getRowByTypeName(givenTypeName);
-  if (!typeNameInTable) {
+  const typeData = await typesTable.getRowByTypeName(givenTypeName);
+  if (!typeData) {
     next(new CustomNotFoundError("Type with this name doesn't exist"));
     return;
   }
@@ -30,7 +30,7 @@ const getParticularTypePage: RequestHandler<{ typeName: string }> = async (
   response.render('main', {
     title: `${givenTypeName} type`,
     componentName: 'type/one',
-    typeName: givenTypeName,
+    typeData,
     allPokemonOfType,
   });
 };

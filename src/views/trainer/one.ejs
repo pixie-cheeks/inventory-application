@@ -33,16 +33,18 @@
 </div>
 
 <% if (ownedPokemons.length > 0) { %>
-<h2>Owned Pokemon</h2>
-<ul class="cards">
-  <% ownedPokemons.forEach(({id: pokemonId, pokemon_name, type_one, type_two, image_src: pokemon_image_src}) => { %>
-  <li>
-    <a href="/pokemon/<%- pokemonId %>" class="card">
-      <img src="<%= pokemon_image_src || '/images/no-image-icon.png' %>" alt="Appearance of <%= pokemon_name %>" class="card__media category-card__media">
-      <p class="card__title"><%- pokemon_name %></p>
-    </a>
-  </li>
+<div class="details__block">
+  <h2 class="details__title">Owned Pokemon</h2>
+  <ul class="cards">
+    <% ownedPokemons.forEach(({id: pokemonId, pokemon_name, type_one, type_two, image_src: pokemon_image_src}) => { %>
+    <li>
+      <a href="/pokemon/<%- pokemonId %>" class="card">
+        <img src="<%= pokemon_image_src || '/images/no-image-icon.png' %>" alt="Appearance of <%= pokemon_name %>" class="card__media category-card__media">
+        <p class="card__title"><%- pokemon_name %></p>
+      </a>
+    </li>
 
-  <% }) %>
-</ul>
+    <% }) %>
+  </ul>
+</div>
 <% } %>
