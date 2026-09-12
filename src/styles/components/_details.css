@@ -28,6 +28,7 @@
   &__media {
     justify-self: center;
     border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-level-2);
     aspect-ratio: 1;
     width: var(--space-12);
     object-fit: cover;

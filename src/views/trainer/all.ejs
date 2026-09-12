@@ -3,14 +3,16 @@
   <a href="/trainers/new" class="main__btn btn">Add &plus;</a>
 </div>
 <% if (allTrainers.length > 0) { %>
-<ol>
-  <% for (const {id, trainer_name, trainer_description} of allTrainers) { %>
+<ul class="cards">
+  <% for (const {id, trainer_name, trainer_description, image_src} of allTrainers) { %>
   <li>
-    <a href="/trainers/<%- id %>"><%- trainer_name %></a>
-    <p><%- trainer_description %></p>
+    <a href="/trainers/<%- id %>" class="card">
+      <img src="<%= image_src || '/images/no-image-icon.png' %>" alt="Appearance of <%= trainer_name %>" class="card__media category-card__media">
+      <p class="card__title"><%- trainer_name %></p>
+    </a>
   </li>
   <% } %>
-</ol>
+</ul>
 <% } else { %>
 <div class="main__content">
   <img src="/images/empty-state.webp" alt="" class="main__media">

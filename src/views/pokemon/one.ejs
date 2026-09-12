@@ -43,12 +43,16 @@
 
 
 <% if (trainerOwners.length > 0) { %>
-<h3>Owned by the following trainers:</h3>
-<ul>
-  <% trainerOwners.forEach(({id, trainer_name}) => { %>
+<h2>Owned by the following trainers:</h2>
+<ul class="cards">
+  <% trainerOwners.forEach(({id, trainer_name, image_src: trainer_image_src}) => { %>
   <li>
-    <h4><a href="/trainers/<%- id %>"><%- trainer_name %></a></h4>
+    <a href="/trainers/<%- id %>" class="card">
+      <img src="<%= trainer_image_src || '/images/no-image-icon.png' %>" alt="Appearance of <%= trainer_name %>" class="card__media category-card__media">
+      <p class="card__title"><%- trainer_name %></p>
+    </a>
   </li>
+
   <% }) %>
 </ul>
 

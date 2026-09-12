@@ -1,21 +1,21 @@
 <form action="/trainers/new" method="post" class="form">
   <%- include('../partials/error') %>
   <div class="form__container">
-    <h1 class="form__title">Create a new trainer</h1>
+    <h1 class="form__title">Create a New Trainer</h1>
 
     <div class="form__field">
       <label for="name">Name</label>
-      <input type="text" id="name" name="trainer_name" class="form__input" required>
+      <input type="text" id="name" name="trainer_name" class="form__input" required placeholder="Ash Ketchum">
     </div>
 
     <div class="form__field">
       <label for="description">Description</label>
-      <textarea name="trainer_description" id="description" class="form__input form__input--textarea" required></textarea>
+      <textarea name="trainer_description" id="description" class="form__input form__input--textarea" required placeholder="Ash has a nice cap"></textarea>
     </div>
 
     <div class="form__field">
       <label for="image">Trainer Image URL</label>
-      <input type="url" id="image" name="image_src" class="form__input">
+      <input type="url" id="image" name="image_src" class="form__input" placeholder="https://some-page.com/some-image.jpg">
     </div>
 
     <% if (locals.allPokemon?.length > 0) { %>
