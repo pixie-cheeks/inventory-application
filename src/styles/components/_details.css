@@ -1,0 +1,18 @@
+.details {
+  &__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  &__actions {
+    display: flex;
+    gap: var(--space-5);
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
