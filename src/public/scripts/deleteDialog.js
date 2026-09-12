@@ -1,8 +1,41 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /**
- * @type {HTMLFormElement | null}
+ * @param {string} cssSelector
+ * @return {HTMLElement}
  */
-const deleteForm = document.querySelector('#delete-form');
-if (!deleteForm) throw new Error('Could not find the delete form.');
+const getHTMLElement = (cssSelector) => {
+  const element = document.querySelector(cssSelector);
+
+  if (!(element instanceof HTMLElement))
+    throw new Error(
+      `Could not find the element with the selector ${cssSelector}.`,
+    );
+
+  return element;
+};
+
+/**
+ * @param {string} cssSelector
+ * @return {HTMLFormElement}
+ */
+const getHTMLFormElement = (cssSelector) => {
+  const formElement = getHTMLElement(cssSelector);
+  if (!(formElement instanceof HTMLFormElement))
+    throw new Error(
+      `Element found with selector ${cssSelector} is not a form element.`,
+    );
+
+  return formElement;
+};
+
+const dialogOpenButton = getHTMLElement('#open-delete-dialog-btn');
+const dialogCloseButton = getHTMLElement('#close-delete-dialog-btn');
+const dialogModal = getHTMLElement('#delete-dialog');
+if (!(dialogModal instanceof HTMLDialogElement))
+  throw new Error('The dialogModal element is not a dialog element.');
+
+const deleteFormSelector = '#delete-form';
+const deleteForm = getHTMLFormElement(deleteFormSelector);
 
 const formAction = deleteForm.getAttribute('action');
 if (!formAction) throw new Error('The form action attribute is null.');
@@ -10,7 +43,6 @@ if (!formAction) throw new Error('The form action attribute is null.');
 /**
  * @param {import('express-validator').FieldValidationError[]} errors
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const renderError = (errors) => {
   for (const { path, msg } of errors) {
     console.error(msg);
@@ -44,4 +76,28 @@ deleteForm.addEventListener('submit', async (event) => {
   } catch (error) {
     console.error(error);
   }
+});
+
+const closeDialog = () => {
+  dialogModal.close();
+};
+
+dialogOpenButton.addEventListener('click', () => {
+  dialogModal.showModal();
+});
+
+dialogCloseButton.addEventListener('click', closeDialog);
+
+document.body.addEventListener('mousedown', (event) => {
+  if (!dialogModal.open) return;
+  const { target } = event;
+  if (!(target instanceof HTMLElement)) return;
+
+  if (target === deleteForm || target.closest(deleteFormSelector)) return;
+
+  closeDialog();
+});
+
+deleteForm.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeDialog();
 });

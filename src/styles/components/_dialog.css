@@ -1,0 +1,17 @@
+.dialog {
+  border: none;
+  background-color: transparent;
+
+  &__container {
+    /* background-color: var(--dialog-bg); */
+    --form-bg: var(--dialog-bg);
+  }
+
+  &__form {
+    border-radius: var(--border-radius);
+  }
+
+  &__btn {
+    margin: 0;
+  }
+}

@@ -47,4 +47,8 @@
     width: auto;
     max-height: var(--space-10);
   }
+
+  &__dialog {
+    margin: auto;
+  }
 }

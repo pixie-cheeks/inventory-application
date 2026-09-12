@@ -1,19 +1,37 @@
 <% if (locals.deleteData) { %>
 <% const {categoryName, itemName, formAction} = deleteData %>
 
-<dialog id="delete-dialog" closedby="any">
-  <h1>Delete <%- categoryName %></h1>
-  <p>You're going to delete the <%- categoryName.toLowerCase() %> "<%= itemName %>." Are you sure?</p>
+<dialog id="delete-dialog" class="dialog main__dialog">
+  <form id="delete-form" class="dialog__form" action="<%- formAction %>" method="dialog">
+    <div class="form__container dialog__container">
 
-  <form id="delete-form" action="<%- formAction %>">
-    <label for="delete-password">Enter Admin Password</label>
-    <input type="password" name="admin_password" id="delete-password">
-    <button type="button" commandfor="delete-dialog" command="close">No, Keep it.</button>
-    <button type="submit">Yes, Delete it!</button>
+      <h1 class="form__title">Delete <%- categoryName %></h1>
+
+      <div class="form__icon-container">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="form__icon">
+          <path d="M10 11v6" />
+          <path d="M14 11v6" />
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+          <path d="M3 6h18" />
+          <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        </svg>
+        <p class="form__subtitle">You're going to delete the <%- categoryName.toLowerCase() %> "<%= itemName %>." Are you sure?</p>
+      </div>
+
+      <div class="form__field">
+        <label for="delete-password">Enter Admin Password</label>
+        <input type="password" name="admin_password" id="delete-password" class="form__input">
+      </div>
+
+      <div class="form__actions">
+        <button type="button" id="close-delete-dialog-btn" class="btn form__btn dialog__btn form__btn--secondary">No, Keep it.</button>
+        <button type="submit" class="btn form__btn dialog__btn">Yes, Delete it!</button>
+      </div>
+    </div>
   </form>
 </dialog>
 
-<button type="button" id="open-delete-dialog-btn" commandfor="delete-dialog" command="show-modal" class="btn details__btn" title="Delete">
+<button type="button" id="open-delete-dialog-btn" class="btn details__btn" title="Delete">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="" aria-hidden="true">
     <circle cx="11" cy="13" r="9" />
     <path d="M14.35 4.65 16.3 2.7a2.41 2.41 0 0 1 3.4 0l1.6 1.6a2.4 2.4 0 0 1 0 3.4l-1.95 1.95" />

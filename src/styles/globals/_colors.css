@@ -37,4 +37,8 @@
   --primary-btn-hover-bg: var(--red-700);
   --form-bg: var(--grey-200);
   --form-focus-color: var(--red-400);
+  --dialog-bg: var(--grey-100);
+  --secondary-btn-bg: var(--grey-100);
+  --secondary-btn-fg: var(--grey-800);
+  --secondary-btn-hover-bg: var(--grey-200);
 }
