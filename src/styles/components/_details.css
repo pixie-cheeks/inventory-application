@@ -1,8 +1,17 @@
 .details {
   &__header {
     display: flex;
-    align-items: baseline;
+    gap: var(--space-4);
+    align-items: start;
     justify-content: space-between;
+  }
+
+  &__heading {
+    font-size: var(--font-size-6);
+
+    @media (--for-tablet-portrait-up) {
+      font-size: var(--font-size-7);
+    }
   }
 
   &__actions {
@@ -14,5 +23,47 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &__media {
+    justify-self: center;
+    border-radius: var(--border-radius);
+    aspect-ratio: 1;
+    width: var(--space-12);
+    object-fit: cover;
+  }
+
+  &__grid {
+    display: grid;
+    gap: var(--space-5);
+
+    @media (--for-tablet-portrait-up) {
+      grid-template-columns: auto 1fr;
+    }
+  }
+
+  &__card {
+    padding: var(--space-2);
+    max-width: max-content;
+  }
+
+  &__list {
+    display: flex;
+    gap: var(--space-5);
+    margin-bottom: var(--space-5);
+    margin-inline: auto;
+    max-width: max-content;
+
+    @media (--for-tablet-portrait-up) {
+      margin-inline: 0;
+      max-width: none;
+    }
+  }
+
+  &__list-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    align-items: center;
   }
 }

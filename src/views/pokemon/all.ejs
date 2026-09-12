@@ -4,26 +4,18 @@
   <a href="/pokemon/new" class="main__btn btn">Add &plus;</a>
   <% } %>
 </div>
-<% if (allPokemon.length > 0) { %>
 
-<ol>
-  <% for (const {id, pokemon_name, pokemon_description, type_one, type_two} of allPokemon) { %>
+<% if (allPokemon.length > 0) { %>
+<ul class="cards">
+  <% for (const {id, pokemon_name, pokemon_description, type_one, type_two, image_src} of allPokemon) { %>
   <li>
-    <p><a href="/pokemon/<%- id %>"><%- pokemon_name %></a></p>
-    <dl>
-      <dt>Type One</dt>
-      <dd><a href="/types/<%- type_one %>"><%- type_one %></a></dd>
-      <% if (locals.type_two) { %>
-      <dt>Type Two</dt>
-      <dd><%- type_two %></dd>
-      <dd><a href="/types/<%- type_two %>"><%- type_two %></a></dd>
-      <% } %>
-    </dl>
-    <p><%- pokemon_description %></p>
+    <a href="/pokemon/<%- id %>" class="card">
+      <img src="<%= image_src || '/images/no-image-icon.png' %>" alt="Appearance of <%= pokemon_name %>" class="card__media category-card__media">
+      <p class="card__title"><%- pokemon_name %></p>
+    </a>
   </li>
   <% } %>
-</ol>
-
+</ul>
 <% } else { %>
 <div class="main__content">
   <img src="/images/empty-state.webp" alt="" class="main__media">
