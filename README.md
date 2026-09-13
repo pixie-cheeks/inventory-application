@@ -1,5 +1,10 @@
 # Inventory Application
 
+<!-- RENDER_BADGE_START -->
+
+![Render Status](https://img.shields.io/badge/Render-Live-brightgreen?logo=render&style=for-the-badge)
+<!-- RENDER_BADGE_END -->
+
 [Live link ✨](https://inventory-application-revt.onrender.com/)
 
 This is a pok&eacute;mon inventory management app. It can manage pok&eacute;mon, their types and trainers. Created as part of The Odin Project NodeJS course.
