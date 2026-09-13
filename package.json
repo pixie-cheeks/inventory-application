@@ -117,6 +117,7 @@
       "Vecteezy"
     ],
     "ignorePaths": [
+      ".env",
       ".git",
       ".husky/_",
       "dist",
