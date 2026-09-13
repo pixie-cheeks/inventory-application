@@ -54,6 +54,10 @@ const doSeedingProcedure = async (): Promise<void> => {
 };
 
 switch (process.argv.at(2)) {
+  case 'create': {
+    await createTables();
+    break;
+  }
   case 'drop': {
     await dropTables();
     break;
@@ -67,7 +71,7 @@ switch (process.argv.at(2)) {
     break;
   }
   default: {
-    console.log('Use the following subcommands: seed, reset or drop');
+    console.log('Use the following subcommands: seed, reset, create or drop');
   }
 }
 
