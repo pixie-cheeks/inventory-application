@@ -10,8 +10,8 @@
   },
   "scripts": {
     "build": "tsx ./build-project.ts",
-    "preview": "node dist/app.js",
-    "start": "tsx src/db/populateDatabase.ts create && tsx src/app.ts",
+    "start": "node dist/db/populateDatabase.js create && node dist/app.js",
+    "preview": "tsx src/db/populateDatabase.ts create && tsx src/app.ts",
     "dev": "tsx --watch .",
     "watch:css": "postcss ./src/styles/style.css --dir ./src/public/styles --map --watch",
     "populateDB": "tsx src/db/populateDatabase.ts",
