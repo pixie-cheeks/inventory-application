@@ -64,5 +64,11 @@ export default defineConfig([
       'no-console': ['error', { allow: ['warn', 'error'] }],
     },
   },
+  {
+    files: ['build-project.ts'],
+    rules: {
+      'no-console': 'off',
+    },
+  },
   pixie.prettier,
 ]);

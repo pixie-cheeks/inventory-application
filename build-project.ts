@@ -3,20 +3,25 @@
 /* eslint-disable import-x/no-named-as-default-member */
 import shell from 'shelljs';
 
-// Clean the build folder
+console.log('Cleaning the build folder.');
 shell.rm('-rf', ['dist']);
+console.log('Done cleaning.');
 
-// Build js files from ts
+console.log('Build JS files from TS files.');
 shell.exec('tsc -p configs/tsconfig.build.json');
+console.log('Done building JS files.');
 
-// Build styles with postcss
+console.log('Build styles with postcss.');
 shell.exec(
   'postcss src/styles/style.css --dir src/public/styles --map --env production',
 );
+console.log('Done building styles.');
 
-// Copy all the view templates and assets in the public folder
+console.log('Copy other assets.');
 shell.cp('-R', ['src/views', 'src/public'], 'dist/');
 shell.cp('src/db/schema.sql', 'dist/db/schema.sql');
+console.log('Done copying assets.');
 
-// Remove unnecessary files
+console.log('Remove unnecessary files.');
 shell.rm('-f', ['dist/public/js/*.ts', 'dist/public/js/*.json']);
+console.log('Done removing unnecessary files.');
