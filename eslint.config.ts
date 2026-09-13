@@ -9,9 +9,6 @@ export default defineConfig([
     languageOptions: {
       parserOptions: {
         projectService: true,
-        // projectService: {
-        // allowDefaultProject: ['*.js', '*.ts'],
-        // },
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -51,6 +48,7 @@ export default defineConfig([
     files: ['build-project.ts'],
     rules: {
       'import-x/no-extraneous-dependencies': 'off',
+      'no-console': 'off',
     },
   },
   {
@@ -62,12 +60,6 @@ export default defineConfig([
     rules: {
       'n/no-unsupported-features/node-builtins': 'off',
       'no-console': ['error', { allow: ['warn', 'error'] }],
-    },
-  },
-  {
-    files: ['build-project.ts'],
-    rules: {
-      'no-console': 'off',
     },
   },
   pixie.prettier,
