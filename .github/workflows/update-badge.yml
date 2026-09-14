@@ -18,7 +18,7 @@ jobs:
           RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
         run: |
           sed -Ez -i \
-           "s|(<\!-- RENDER_BADGE_START -->\n).*(\n<\!-- RENDER_BADGE_END -->\n)|\1\![Render Status]($(npx render-status-badge-forked | sed 's/&/\\&/'))\2|" README.md
+           "s|(<\!-- RENDER_BADGE_START -->\n).*(\n<\!-- RENDER_BADGE_END -->\n)|\1\n\![Render Status]($(npx render-status-badge-forked | sed 's/&/\\&/'))\2|" README.md
            
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
